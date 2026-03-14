@@ -25,7 +25,7 @@ app.post('/api/groq', async (req, res) => {
       body: JSON.stringify({
         model: 'llama-3.3-70b-versatile',
         messages: groqMessages,
-        max_tokens: max_tokens || 3000,
+        max_tokens: max_tokens || 4000,
         temperature: 0.7
       })
     });
