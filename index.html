@@ -464,9 +464,10 @@ Mix : 40% sans site, 35% sites mauvais, 25% sites moyens. Données très réalis
     });
 
     const data = await resp.json();
-    const raw = data.content?.map(c => c.text || '').join('').trim();
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(clean);
+ if (!data.content || !data.content[0]) throw new Error('Pas de réponse Claude - vérifie ta clé API');
+const raw = data.content[0].text || '';
+const clean = raw.replace(/```json|```/g, '').trim();
+const parsed = JSON.parse(clean);
 
     setP(85, 'Scoring et priorisation...');
     addLog(`✅ ${parsed.length} prospects analysés et qualifiés`);
