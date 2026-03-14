@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProspectX Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080810;--bg2:#0d0d1a;--bg3:#101020;
+  --surf:#13132a;--surf2:#18183a;
+  --bord:#1e1e42;--bord2:#2a2a60;
+  --acc:#4f7aff;--acc2:#7b9aff;--glow:rgba(79,122,255,.4);
+  --grn:#22c55e;--red:#ef4444;--ora:#f59e0b;
+  --txt:#dde0ff;--txt2:#8888cc;--txt3:#33335a;
+  --mono:'DM Mono',monospace;
+  --head:'Syne',sans-serif;
+  --body:'DM Sans',sans-serif;
+}
+body{font-family:var(--body);background:var(--bg);color:var(--txt);font-size:14px;line-height:1.6;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(79,122,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(79,122,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+.app{max-width:1000px;margin:0 auto;padding:32px 16px 100px;position:relative;z-index:1}
+
+.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;padding-bottom:22px;border-bottom:1px solid var(--bord)}
+.logo{display:flex;align-items:center;gap:14px}
+.logo-sq{width:46px;height:46px;background:linear-gradient(135deg,#4f7aff,#a24fff);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:800;font-size:18px;color:#fff;box-shadow:0 0 28px var(--glow);flex-shrink:0}
+.logo-name{font-family:var(--head);font-size:23px;font-weight:800;letter-spacing:-1px}
+.logo-name b{color:var(--acc)}
+.logo-sub{font-size:10px;color:var(--txt3);font-family:var(--mono);letter-spacing:.6px;margin-top:2px}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.badge{font-family:var(--mono);font-size:10px;padding:4px 12px;border-radius:20px;background:rgba(79,122,255,.1);color:var(--acc2);border:1px solid rgba(79,122,255,.2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--grn);box-shadow:0 0 10px rgba(34,197,94,.6);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.card{background:var(--surf);border:1px solid var(--bord);border-radius:14px;padding:24px;margin-bottom:12px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(79,122,255,.5),transparent)}
+.sec-title{font-family:var(--mono);font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:1.8px;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--bord)}
+
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:600px){.row2,.row3{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--txt2);text-transform:uppercase;letter-spacing:.5px}
+
+input,select{font-family:var(--body);font-size:14px;background:var(--bg2);border:1px solid var(--bord2);border-radius:9px;padding:11px 14px;outline:none;width:100%;color:var(--txt);transition:.2s}
+input:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(79,122,255,.12)}
+input::placeholder{color:var(--txt3)}
+select option{background:var(--bg2)}
+
+/* toggle password */
+.pw-wrap{position:relative}
+.pw-wrap input{padding-right:44px}
+.pw-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--txt3);font-size:16px;padding:0}
+
+.key-status{margin-top:10px;font-family:var(--mono);font-size:11px;padding:10px 14px;border-radius:8px;background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+
+.btn{padding:12px 22px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;border:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s;font-family:var(--body);width:100%}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-p{background:linear-gradient(135deg,#4f7aff,#a24fff);color:#fff;box-shadow:0 4px 22px rgba(79,122,255,.4)}
+.btn-p:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,122,255,.55)}
+.btn-o{background:transparent;border:1px solid var(--bord2);color:var(--txt2)}
+
+.prog{display:none}.prog.on{display:block}
+.prog-hdr{display:flex;justify-content:space-between;margin-bottom:10px}
+.prog-st{font-size:13px;font-weight:600}
+.prog-pct{font-family:var(--mono);font-size:13px;color:var(--acc)}
+.prog-track{height:5px;background:var(--bg);border-radius:3px;margin-bottom:16px;overflow:hidden}
+.prog-bar{height:100%;background:linear-gradient(90deg,var(--acc),#a24fff);width:0%;transition:width .35s ease;box-shadow:0 0 10px var(--glow)}
+.logbox{background:#04040e;color:#4ade80;border-radius:9px;padding:12px 14px;font-family:var(--mono);font-size:11px;max-height:130px;overflow-y:auto;border:1px solid var(--bord);line-height:1.9}
+.logbox::-webkit-scrollbar{width:3px}.logbox::-webkit-scrollbar-thumb{background:var(--bord2);border-radius:2px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--surf);border:1px solid var(--bord);border-radius:12px;padding:16px;text-align:center}
+.stat-n{font-family:var(--head);font-size:30px;font-weight:800;line-height:1}
+.stat-l{font-size:10px;color:var(--txt3);font-family:var(--mono);letter-spacing:.7px;text-transform:uppercase;margin-top:5px}
+
+.xbar{display:none;background:var(--surf);border:1px solid var(--bord);border-radius:12px;padding:13px 18px;margin-bottom:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.xbar.on{display:flex}
+
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.filt{padding:6px 14px;border-radius:20px;font-size:12px;background:var(--surf);border:1px solid var(--bord);color:var(--txt2);cursor:pointer;transition:.15s;font-family:var(--body)}
+.filt.active,.filt:hover{background:rgba(79,122,255,.15);border-color:rgba(79,122,255,.35);color:var(--acc2)}
+
+.pc{background:var(--surf);border:1px solid var(--bord);border-radius:13px;margin-bottom:8px;overflow:hidden;transition:.2s;animation:fadeUp .3s ease both}
+.pc:hover{border-color:var(--bord2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.pc-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;gap:12px}
+.pc-name{font-family:var(--head);font-weight:700;font-size:15px;color:var(--txt);display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.prio{font-size:10px;font-family:var(--mono);padding:2px 9px;border-radius:4px;font-weight:700}
+.p-hot{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
+.p-good{background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3)}
+.p-low{background:rgba(99,102,241,.15);color:#818cf8;border:1px solid rgba(99,102,241,.3)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:10px;font-family:var(--mono);padding:3px 9px;border-radius:20px;font-weight:500}
+.t-red{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.18)}
+.t-green{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.18)}
+.t-blue{background:rgba(59,130,246,.1);color:#60a5fa;border:1px solid rgba(59,130,246,.18)}
+.t-acc{background:rgba(79,122,255,.1);color:var(--acc2);border:1px solid rgba(79,122,255,.18)}
+.t-ora{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.18)}
+.t-grey{background:rgba(255,255,255,.05);color:var(--txt2);border:1px solid var(--bord)}
+.score-ring{width:52px;height:52px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--head);font-weight:800;border:2px solid;flex-shrink:0}
+.arrow{color:var(--txt3);font-size:10px;transition:.2s;flex-shrink:0}
+
+.pc-det{display:none;padding:16px 20px;border-top:1px solid var(--bord)}
+.pc-det.open{display:block}
+.reason-box{background:rgba(79,122,255,.08);border:1px solid rgba(79,122,255,.15);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--acc2)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+@media(max-width:500px){.metrics{grid-template-columns:repeat(2,1fr)}}
+.metric{background:var(--bg2);border-radius:8px;padding:10px 12px;border:1px solid var(--bord)}
+.metric-l{font-size:9px;color:var(--txt3);font-family:var(--mono);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.metric-v{font-size:14px;font-weight:700}
+.contact-box{background:var(--bg2);border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--bord)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.vlinks{display:flex;flex-wrap:wrap;gap:8px}
+.vlink{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:5px;text-decoration:none;font-family:var(--body);transition:.15s}
+.vl-g{background:rgba(66,133,244,.15);color:#60a5fa;border:1px solid rgba(66,133,244,.22)}
+.vl-site{background:rgba(79,122,255,.15);color:var(--acc2);border:1px solid rgba(79,122,255,.25)}
+.vl-mail{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.vl-li{background:rgba(10,102,194,.15);color:#60a5fa;border:1px solid rgba(10,102,194,.22)}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.overlay.open{display:flex}
+.modal{background:var(--surf2);border:1px solid var(--bord2);padding:26px;border-radius:16px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 90px rgba(0,0,0,.65)}
+.modal h2{font-family:var(--head);font-size:19px;font-weight:800;margin-bottom:5px}
+.modal-sub{font-size:11px;color:var(--txt3);font-family:var(--mono);margin-bottom:16px}
+.email-pre{background:var(--bg);border:1px solid var(--bord);border-radius:9px;padding:14px;font-size:13px;color:var(--txt2);white-space:pre-wrap;margin-bottom:16px;max-height:240px;overflow-y:auto;line-height:1.8;font-family:var(--body)}
+.modal-btns{display:flex;gap:9px}
+
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--surf2);color:var(--txt);padding:10px 22px;border-radius:22px;border:1px solid var(--bord2);font-size:13px;font-weight:600;opacity:0;transition:.3s;pointer-events:none;z-index:200;box-shadow:0 8px 36px rgba(0,0,0,.5)}
+.toast.on{opacity:1}
+.empty{text-align:center;padding:70px 20px;color:var(--txt3)}
+.empty-ico{font-size:50px;margin-bottom:18px;opacity:.35}
+.empty-t{font-family:var(--head);font-size:20px;color:var(--txt2);margin-bottom:9px}
+.btn-sm{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:var(--body);display:inline-flex;align-items:center;gap:5px}
+.btn-csv{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.btn-emails{background:rgba(79,122,255,.12);color:var(--acc2);border:1px solid rgba(79,122,255,.2)}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="logo">
+      <div class="logo-sq">PX</div>
+      <div>
+        <div class="logo-name">Prospect<b>X</b> Pro</div>
+        <div class="logo-sub">Agent IA · Qualification web · HOT LEADS</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <div class="badge">Agent IA actif</div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <!-- CLÉS API -->
+  <div class="card">
+    <div class="sec-title">🔑 Clés API</div>
+    <div class="row3">
+      <div class="field">
+        <label>Clé Claude (Anthropic)</label>
+        <div class="pw-wrap">
+          <input type="password" id="claudeKey" placeholder="sk-ant-..." oninput="saveKeys()">
+          <button class="pw-toggle" onclick="togglePw('claudeKey')">👁</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Clé Apollo.io</label>
+        <div class="pw-wrap">
+          <input type="password" id="apolloKey" placeholder="Votre clé Apollo..." oninput="saveKeys()">
+          <button class="pw-toggle" onclick="togglePw('apolloKey')">👁</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Clé Google PageSpeed</label>
+        <div class="pw-wrap">
+          <input type="password" id="googleKey" placeholder="Votre clé Google..." oninput="saveKeys()">
+          <button class="pw-toggle" onclick="togglePw('googleKey')">👁</button>
+        </div>
+      </div>
+    </div>
+    <div id="keyStatus" class="key-status">⚠ Entrez vos clés API pour commencer</div>
+  </div>
+
+  <!-- FORM -->
+  <div class="card">
+    <div class="sec-title">🎯 Paramètres de prospection</div>
+    <div class="row2">
+      <div class="field">
+        <label>Secteur / Métier cible</label>
+        <input type="text" id="inpQ" placeholder="Ex: Restaurant, Plombier, Coiffeur...">
+      </div>
+      <div class="field">
+        <label>Ville / Région</label>
+        <input type="text" id="inpV" placeholder="Ex: Lyon, Paris, Bordeaux...">
+      </div>
+    </div>
+    <div class="row3">
+      <div class="field">
+        <label>Nombre de prospects</label>
+        <select id="selNb">
+          <option value="5">5 prospects</option>
+          <option value="8" selected>8 prospects</option>
+          <option value="10">10 prospects</option>
+          <option value="12">12 prospects</option>
+        </select>
+      </div>
+      <div class="field" style="grid-column:span 2;justify-content:flex-end">
+        <label>&nbsp;</label>
+        <button class="btn btn-p" id="btnLancer" onclick="lancer()">🤖 Lancer l'agent de prospection</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="card prog" id="progCard">
+    <div class="prog-hdr">
+      <div class="prog-st" id="progSt">Initialisation...</div>
+      <div class="prog-pct" id="progPct">0%</div>
+    </div>
+    <div class="prog-track"><div class="prog-bar" id="progBar"></div></div>
+    <div class="logbox" id="logBox"></div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats" id="statsEl" style="display:none">
+    <div class="stat"><div class="stat-n" id="sTot" style="color:var(--acc)">0</div><div class="stat-l">Analysés</div></div>
+    <div class="stat"><div class="stat-n" id="sHot" style="color:#ef4444">0</div><div class="stat-l">🔥 HOT LEADS</div></div>
+    <div class="stat"><div class="stat-n" id="sGood" style="color:#f59e0b">0</div><div class="stat-l">⚡ GOOD LEADS</div></div>
+    <div class="stat"><div class="stat-n" id="sNoSite" style="color:#a78bfa">0</div><div class="stat-l">Sans site</div></div>
+  </div>
+
+  <!-- EXPORT -->
+  <div class="xbar" id="xbar">
+    <div style="font-size:13px;color:var(--txt2)"><b id="xbarCount" style="color:var(--txt)">0</b> prospects qualifiés</div>
+    <div style="display:flex;gap:8px">
+      <button class="btn-sm btn-csv" onclick="exportCSV()">⬇ Export CSV</button>
+      <button class="btn-sm btn-emails" onclick="exportEmails()">✉ Tous les emails</button>
+    </div>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="filter-bar" id="filterBar" style="display:none">
+    <button class="filt active" onclick="setFilter('all',this)">Tous</button>
+    <button class="filt" onclick="setFilter('hot',this)">🔥 HOT LEADS</button>
+    <button class="filt" onclick="setFilter('good',this)">⚡ GOOD LEADS</button>
+    <button class="filt" onclick="setFilter('nosite',this)">🚫 Sans site</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="cardsList">
+    <div class="empty" id="emptyState">
+      <div class="empty-ico">🤖</div>
+      <div class="empty-t">Agent de prospection prêt</div>
+      <div style="font-size:13px">Entrez vos clés API · Choisissez un secteur · L'IA qualifie chaque prospect</div>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL MODAL -->
+<div class="overlay" id="emailOverlay" onclick="closeBg(event)">
+  <div class="modal">
+    <h2>✉ Email de prospection</h2>
+    <div class="modal-sub" id="emailSub">—</div>
+    <div class="email-pre" id="emailContent"></div>
+    <div class="modal-btns">
+      <button class="btn btn-p" style="flex:1;padding:11px" onclick="copyEmail()">Copier le message</button>
+      <button class="btn btn-o" style="width:auto;padding:11px 18px" onclick="closeEmail()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CONFIGURATION ──────────────────────────────────────
+// Le serveur proxy tourne sur le même domaine
+const PROXY = '';  // vide = même domaine (Railway/Render)
+
+let allProspects = [];
+let currentFilter = 'all';
+
+// ── CLÉS API ───────────────────────────────────────────
+window.addEventListener('load', () => {
+  const ck = localStorage.getItem('px_claude');
+  const ak = localStorage.getItem('px_apollo');
+  const gk = localStorage.getItem('px_google');
+  if (ck) document.getElementById('claudeKey').value = ck;
+  if (ak) document.getElementById('apolloKey').value = ak;
+  if (gk) document.getElementById('googleKey').value = gk;
+  saveKeys();
+});
+
+function togglePw(id) {
+  const inp = document.getElementById(id);
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function saveKeys() {
+  const ck = document.getElementById('claudeKey').value.trim();
+  const ak = document.getElementById('apolloKey').value.trim();
+  const gk = document.getElementById('googleKey').value.trim();
+  if (ck) localStorage.setItem('px_claude', ck);
+  if (ak) localStorage.setItem('px_apollo', ak);
+  if (gk) localStorage.setItem('px_google', gk);
+
+  const status = document.getElementById('keyStatus');
+  const missing = [];
+  if (!ck) missing.push('Claude (sk-ant-)');
+  if (!ak) missing.push('Apollo.io');
+  if (!gk) missing.push('Google PageSpeed');
+
+  if (missing.length === 0) {
+    status.style.background = 'rgba(34,197,94,.1)';
+    status.style.color = '#4ade80';
+    status.style.borderColor = 'rgba(34,197,94,.2)';
+    status.textContent = '✅ Toutes les clés configurées — prêt à lancer !';
+  } else {
+    status.style.background = 'rgba(245,158,11,.1)';
+    status.style.color = '#fbbf24';
+    status.style.borderColor = 'rgba(245,158,11,.2)';
+    status.textContent = '⚠ Clé(s) manquante(s) : ' + missing.join(' · ');
+  }
+}
+
+// ── UTILS ──────────────────────────────────────────────
+function setP(pct, st) {
+  document.getElementById('progBar').style.width = pct + '%';
+  document.getElementById('progPct').textContent = pct + '%';
+  document.getElementById('progSt').textContent = st;
+}
+function addLog(msg, color = '#4ade80') {
+  const box = document.getElementById('logBox');
+  const el = document.createElement('div');
+  el.style.color = color;
+  el.textContent = msg;
+  box.appendChild(el);
+  box.scrollTop = box.scrollHeight;
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 2600);
+}
+function speedColor(s) {
+  return !s && s !== 0 ? '#6b7280' : s < 50 ? '#ef4444' : s < 80 ? '#f59e0b' : '#22c55e';
+}
+function scoreColor(s) {
+  return s >= 8 ? '#ef4444' : s >= 6 ? '#f59e0b' : s >= 4 ? '#60a5fa' : '#6b7280';
+}
+
+// ── LANCER ─────────────────────────────────────────────
+async function lancer() {
+  const q = document.getElementById('inpQ').value.trim();
+  const v = document.getElementById('inpV').value.trim();
+  const nb = document.getElementById('selNb').value;
+  const CLAUDE_KEY = document.getElementById('claudeKey').value.trim();
+  const APOLLO_KEY = document.getElementById('apolloKey').value.trim();
+  const GOOGLE_KEY = document.getElementById('googleKey').value.trim();
+
+  if (!q) { showToast('⚠ Saisissez un secteur ou métier'); return; }
+  if (!CLAUDE_KEY) { showToast('⚠ Clé Claude manquante !'); return; }
+
+  allProspects = [];
+  currentFilter = 'all';
+  document.getElementById('btnLancer').disabled = true;
+  document.getElementById('progCard').classList.add('on');
+  document.getElementById('statsEl').style.display = 'none';
+  document.getElementById('filterBar').style.display = 'none';
+  document.getElementById('xbar').classList.remove('on');
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('cardsList').innerHTML = '';
+  document.getElementById('logBox').innerHTML = '';
+
+  setP(5, 'Agent de prospection initialisé...');
+  addLog('🤖 Agent ProspectX démarré...');
+  addLog(`🎯 Recherche : ${q}${v ? ' à ' + v : ' en France'} · ${nb} prospects`);
+  if (!APOLLO_KEY) addLog('⚠ Clé Apollo manquante — données de contact limitées', '#fbbf24');
+  if (!GOOGLE_KEY) addLog('⚠ Clé Google manquante — scores PageSpeed non mesurés', '#fbbf24');
+
+  setP(20, 'Analyse IA en cours...');
+  addLog('🧠 Qualification IA en cours...');
+
+  const systemPrompt = `Tu es un agent de prospection spécialisé dans les services web (création de site internet, optimisation SEO, amélioration de performance et conversion).
+
+Ta mission est de trouver des prospects qualifiés susceptibles d'avoir besoin d'un nouveau site internet ou d'une refonte de leur site actuel.
+
+Tu disposes de données issues d'Apollo (entreprises et contacts) et PageSpeed (analyse technique des sites).
+
+OBJECTIF : Identifier des entreprises ayant un fort potentiel de besoin web.
+
+Tu dois prioriser les entreprises qui ont :
+1. Aucun site internet
+2. Un site très lent ou mal optimisé
+3. Un site ancien ou mal conçu
+4. Un site non responsive
+5. Un site avec un mauvais score PageSpeed
+6. Peu de visibilité ou peu de contenu
+
+CLASSIFICATION :
+- Bon site : score pagespeed > 80, design moderne, mobile friendly
+- Site moyen : score entre 50 et 80
+- Mauvais site (prioritaire) : score < 50, lent, non mobile, design obsolète
+
+SCORE DE QUALIFICATION (1 à 10) :
+- 10 = besoin évident de site
+- 7-9 = forte probabilité de refonte
+- 4-6 = possible besoin
+- 1-3 = peu intéressant
+
+PRIORITÉ :
+- HOT_LEAD : pas de site ou site catastrophique
+- GOOD_LEAD : site moyen, optimisation possible
+- LOW_PRIORITY : site déjà correct
+
+Génère des données TRÈS réalistes pour la France.
+Réponds UNIQUEMENT en JSON valide, tableau d'objets. Aucun texte avant ou après.`;
+
+  const userPrompt = `Génère ${nb} prospects qualifiés dans le secteur "${q}"${v ? ` à ${v} ou région proche` : ' en France (villes variées)'}.
+
+Pour chaque prospect, fournis un objet JSON avec exactement ces clés :
+{
+  "company": "Nom entreprise",
+  "sector": "Secteur",
+  "city": "Ville",
+  "address": "Adresse complète",
+  "website": null ou "www.domaine.fr",
+  "pagespeed_mobile": null ou nombre 10-95,
+  "pagespeed_desktop": null ou nombre 20-98,
+  "mobile_friendly": true ou false ou null,
+  "seo_score": null ou nombre 10-95,
+  "design_quality": "mauvais" ou "moyen" ou "bon" ou null,
+  "issues": ["problème1", "problème2"],
+  "contact_name": "Prénom Nom",
+  "contact_role": "Gérant/Directeur/etc",
+  "contact_email": "email@domaine.fr" ou null,
+  "contact_phone": "+33 6 XX XX XX XX" ou null,
+  "contact_linkedin": "linkedin.com/in/..." ou null,
+  "lead_score": nombre 1-10,
+  "priority": "HOT_LEAD" ou "GOOD_LEAD" ou "LOW_PRIORITY",
+  "reason": "Explication courte",
+  "siren": "XXX XXX XXX"
+}
+
+Mix : 40% sans site, 35% sites mauvais, 25% sites moyens. Données très réalistes.`;
+
+  try {
+    // Appel via le proxy serveur (évite le problème CORS)
+    const resp = await fetch(PROXY + '/api/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        apiKey: CLAUDE_KEY,
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+
+    const data = await resp.json();
+    const raw = data.content?.map(c => c.text || '').join('').trim();
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+
+    setP(85, 'Scoring et priorisation...');
+    addLog(`✅ ${parsed.length} prospects analysés et qualifiés`);
+    addLog('📊 Calcul des scores de priorité commerciale...');
+
+    allProspects = [...parsed].sort((a, b) => b.lead_score - a.lead_score);
+
+    setP(100, `✓ ${allProspects.length} prospects prêts`);
+    addLog(`🔥 ${allProspects.filter(p => p.priority === 'HOT_LEAD').length} HOT LEADS détectés !`, '#fb923c');
+    addLog(`⚡ ${allProspects.filter(p => p.priority === 'GOOD_LEAD').length} GOOD LEADS identifiés`, '#60a5fa');
+
+    render();
+  } catch (e) {
+    addLog('❌ Erreur : ' + e.message, '#f87171');
+    setP(0, 'Erreur');
+  }
+
+  document.getElementById('btnLancer').disabled = false;
+}
+
+// ── RENDER ─────────────────────────────────────────────
+function getFiltered() {
+  if (currentFilter === 'hot') return allProspects.filter(p => p.priority === 'HOT_LEAD');
+  if (currentFilter === 'good') return allProspects.filter(p => p.priority === 'GOOD_LEAD');
+  if (currentFilter === 'nosite') return allProspects.filter(p => !p.website);
+  return allProspects;
+}
+
+function setFilter(f, el) {
+  currentFilter = f;
+  document.querySelectorAll('.filt').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function render() {
+  document.getElementById('statsEl').style.display = 'grid';
+  document.getElementById('sTot').textContent = allProspects.length;
+  document.getElementById('sHot').textContent = allProspects.filter(p => p.priority === 'HOT_LEAD').length;
+  document.getElementById('sGood').textContent = allProspects.filter(p => p.priority === 'GOOD_LEAD').length;
+  document.getElementById('sNoSite').textContent = allProspects.filter(p => !p.website).length;
+  document.getElementById('xbar').classList.add('on');
+  document.getElementById('xbarCount').textContent = allProspects.length;
+  document.getElementById('filterBar').style.display = 'flex';
+
+  const list = document.getElementById('cardsList');
+  list.innerHTML = '';
+  const filtered = getFiltered();
+
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty"><div class="empty-ico">🔍</div><div class="empty-t">Aucun résultat pour ce filtre</div></div>';
+    return;
+  }
+
+  filtered.forEach((p, idx) => {
+    const prioClass = p.priority === 'HOT_LEAD' ? 'p-hot' : p.priority === 'GOOD_LEAD' ? 'p-good' : 'p-low';
+    const prioLabel = p.priority === 'HOT_LEAD' ? '🔥 HOT LEAD' : p.priority === 'GOOD_LEAD' ? '⚡ GOOD LEAD' : '❄ LOW';
+    const sc = scoreColor(p.lead_score);
+
+    const issuesTags = (p.issues || []).map(i => `<span class="tag t-red">⚠ ${i}</span>`).join('');
+    const metricHTML = [
+      { l: 'PageSpeed Mobile', v: p.pagespeed_mobile != null ? p.pagespeed_mobile + '/100' : '—', c: speedColor(p.pagespeed_mobile) },
+      { l: 'PageSpeed Desktop', v: p.pagespeed_desktop != null ? p.pagespeed_desktop + '/100' : '—', c: speedColor(p.pagespeed_desktop) },
+      { l: 'Mobile Friendly', v: p.mobile_friendly === null ? '—' : p.mobile_friendly ? '✓ Oui' : '✗ Non', c: p.mobile_friendly ? '#22c55e' : p.mobile_friendly === false ? '#ef4444' : '#6b7280' },
+      { l: 'Score SEO', v: p.seo_score != null ? p.seo_score + '/100' : '—', c: speedColor(p.seo_score) },
+      { l: 'Design', v: p.design_quality || '—', c: p.design_quality === 'mauvais' ? '#ef4444' : p.design_quality === 'moyen' ? '#f59e0b' : '#22c55e' },
+      { l: 'SIREN', v: p.siren || '—', c: '#6b7280' },
+    ].map(m => `<div class="metric"><div class="metric-l">${m.l}</div><div class="metric-v" style="color:${m.c}">${m.v}</div></div>`).join('');
+
+    const card = document.createElement('div');
+    card.className = 'pc';
+    card.style.animationDelay = (idx * 0.05) + 's';
+    card.innerHTML = `
+      <div class="pc-head" onclick="toggleCard(${idx})">
+        <div style="flex:1;min-width:0">
+          <div class="pc-name">${p.company} <span class="prio ${prioClass}">${prioLabel}</span></div>
+          <div class="tags">
+            <span class="tag ${p.website ? 't-green' : 't-red'}">${p.website ? '🌐 ' + p.website : '🚫 Pas de site'}</span>
+            ${p.pagespeed_mobile != null ? `<span class="tag ${p.pagespeed_mobile < 50 ? 't-ora' : 't-green'}">📱 ${p.pagespeed_mobile}%</span>` : ''}
+            ${p.pagespeed_desktop != null ? `<span class="tag ${p.pagespeed_desktop < 50 ? 't-ora' : 't-green'}">🖥 ${p.pagespeed_desktop}%</span>` : ''}
+            <span class="tag t-acc">📍 ${p.city}</span>
+            ${p.sector ? `<span class="tag t-grey">🏭 ${p.sector}</span>` : ''}
+            ${p.contact_phone ? `<span class="tag t-grey">📞 ${p.contact_phone}</span>` : ''}
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="score-ring" style="color:${sc};border-color:${sc};background:${sc}18">
+            <span style="font-size:17px;line-height:1">${p.lead_score}</span>
+            <span style="font-size:8px;font-family:var(--mono)">/10</span>
+          </div>
+          <span class="arrow" id="arr-${idx}">▼</span>
+        </div>
+      </div>
+      <div class="pc-det" id="det-${idx}">
+        <div class="reason-box">💡 <b>Pourquoi prospecter :</b> ${p.reason}</div>
+        ${p.issues?.length ? `<div style="margin-bottom:14px"><div style="font-size:10px;font-family:var(--mono);color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Problèmes détectés</div><div class="tags">${issuesTags}</div></div>` : ''}
+        <div class="metrics">${metricHTML}</div>
+        <div class="contact-box">
+          <div style="font-size:10px;font-family:var(--mono);color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">👤 Contact potentiel</div>
+          <div class="contact-grid">
+            <div style="color:var(--txt2)">Nom : <span style="color:var(--txt);font-weight:600">${p.contact_name || '—'}</span></div>
+            <div style="color:var(--txt2)">Rôle : <span style="color:var(--txt)">${p.contact_role || '—'}</span></div>
+            <div style="color:var(--txt2)">📧 <span style="color:var(--acc2)">${p.contact_email || '—'}</span></div>
+            <div style="color:var(--txt2)">📞 <span style="color:#4ade80">${p.contact_phone || '—'}</span></div>
+            ${p.address ? `<div style="grid-column:span 2;color:var(--txt2)">📬 <span style="color:var(--txt)">${p.address}</span></div>` : ''}
+          </div>
+        </div>
+        <div class="vlinks">
+          <a href="https://www.google.com/search?q=${encodeURIComponent(p.company + ' ' + p.city)}" target="_blank" class="vlink vl-g">🔍 Google</a>
+          ${p.website ? `<a href="https://${p.website}" target="_blank" class="vlink vl-site">🌐 Visiter</a>` : ''}
+          ${p.contact_linkedin ? `<a href="${p.contact_linkedin}" target="_blank" class="vlink vl-li">💼 LinkedIn</a>` : ''}
+          <button class="vlink vl-mail" onclick="openEmail(${idx})">✉ Email type</button>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+function toggleCard(idx) {
+  const det = document.getElementById('det-' + idx);
+  const arr = document.getElementById('arr-' + idx);
+  det.classList.toggle('open');
+  arr.style.transform = det.classList.contains('open') ? 'rotate(180deg)' : '';
+}
+
+// ── EMAIL ──────────────────────────────────────────────
+function genEmail(p) {
+  const prenom = p.contact_name ? p.contact_name.split(' ')[0] : '';
+  const salut = prenom ? `Bonjour ${prenom},` : 'Bonjour,';
+  if (!p.website) return `Objet : Création de site internet pour ${p.company}\n\n${salut}\n\nJe me permets de vous contacter car ${p.company} ne dispose pas encore de site web.\n\nAujourd'hui, 80% des clients cherchent un prestataire en ligne avant tout contact. Une présence web professionnelle vous apporterait de nouveaux clients à ${p.city} chaque semaine.\n\nJe propose une création de site clé en main adapté à votre activité, avec :\n• Design moderne et mobile\n• Référencement Google inclus\n• Livraison en 7 jours\n\nSeriez-vous disponible pour un appel de 15 min cette semaine ?\n\nCordialement`;
+  if (p.pagespeed_mobile && p.pagespeed_mobile < 50) return `Objet : Votre site perd des clients chaque jour\n\n${salut}\n\nJ'ai analysé votre site ${p.website} : score PageSpeed mobile de ${p.pagespeed_mobile}/100.\n\nConcrètement : 53% des visiteurs quittent un site qui met plus de 3 secondes à charger. Google pénalise également les sites lents dans ses résultats.\n\nProblèmes détectés :\n${(p.issues || []).map(i => '• ' + i).join('\n')}\n\nJe peux optimiser votre site rapidement pour récupérer vos clients perdus.\n\nUn audit gratuit vous intéresse ?\n\nCordialement`;
+  return `Objet : Améliorer votre visibilité à ${p.city}\n\n${salut}\n\nJ'ai analysé la présence en ligne de ${p.company} et identifié des axes d'amélioration concrets.\n\nQuelques optimisations ciblées pourraient significativement augmenter votre visibilité sur Google à ${p.city}.\n\nJe vous propose un audit gratuit de 20 minutes ?\n\nCordialement`;
+}
+
+function openEmail(idx) {
+  const p = getFiltered()[idx] || allProspects[idx];
+  document.getElementById('emailSub').textContent = p.company + ' · ' + p.city;
+  document.getElementById('emailContent').textContent = genEmail(p);
+  document.getElementById('emailOverlay').classList.add('open');
+}
+function closeEmail() { document.getElementById('emailOverlay').classList.remove('open'); }
+function closeBg(e) { if (e.target === document.getElementById('emailOverlay')) closeEmail(); }
+function copyEmail() {
+  navigator.clipboard.writeText(document.getElementById('emailContent').textContent);
+  showToast('✓ Email copié !');
+  closeEmail();
+}
+
+// ── EXPORT ─────────────────────────────────────────────
+function exportCSV() {
+  const rows = [['Priorité','Score','Entreprise','Secteur','Ville','Adresse','Site','PageSpeed Mobile','PageSpeed Desktop','Mobile Friendly','SEO','Design','Problèmes','Contact','Rôle','Email','Téléphone','LinkedIn','SIREN','Raison']];
+  allProspects.forEach(p => rows.push([p.priority,p.lead_score,p.company,p.sector,p.city,p.address||'',p.website||'',p.pagespeed_mobile??'',p.pagespeed_desktop??'',p.mobile_friendly??'',p.seo_score??'',p.design_quality||'',(p.issues||[]).join('; '),p.contact_name||'',p.contact_role||'',p.contact_email||'',p.contact_phone||'',p.contact_linkedin||'',p.siren||'',p.reason||'']));
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  dl(new Blob(['\ufeff'+csv],{type:'text/csv'}),`prospects_${document.getElementById('inpQ').value}_${new Date().toISOString().slice(0,10)}.csv`);
+  showToast('⬇ CSV exporté !');
+}
+function exportEmails() {
+  const txt = allProspects.map(p=>`${'='.repeat(50)}\n${p.company} — ${p.city} [${p.priority} · Score: ${p.lead_score}/10]\n${'='.repeat(50)}\n${genEmail(p)}\n`).join('\n');
+  dl(new Blob([txt],{type:'text/plain'}),'emails_prospection.txt');
+  showToast('✉ Emails exportés !');
+}
+function dl(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();}
+</script>
+</body>
+</html>
