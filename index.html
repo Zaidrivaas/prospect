@@ -457,7 +457,7 @@ Mix : 40% sans site, 35% sites mauvais, 25% sites moyens. Données très réalis
       body: JSON.stringify({
         apiKey: GROQ_KEY,
         model: 'llama-3.3-70b-versatile',
-        max_tokens: 1000,
+        max_tokens: 4000,
         system: systemPrompt,
         messages: [{ role: 'user', content: userPrompt }]
       })
