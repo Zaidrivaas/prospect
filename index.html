@@ -162,10 +162,10 @@ select option{background:var(--bg2)}
     <div class="sec-title">🔑 Clés API</div>
     <div class="row3">
       <div class="field">
-        <label>Clé Claude (Anthropic)</label>
+        <label>Clé Groq (Gratuit)</label>
         <div class="pw-wrap">
-          <input type="password" id="claudeKey" placeholder="sk-ant-..." oninput="saveKeys()">
-          <button class="pw-toggle" onclick="togglePw('claudeKey')">👁</button>
+          <input type="password" id="groqKey" placeholder="gsk_..." oninput="saveKeys()">
+          <button class="pw-toggle" onclick="togglePw('groqKey')">👁</button>
         </div>
       </div>
       <div class="field">
@@ -286,10 +286,10 @@ let currentFilter = 'all';
 
 // ── CLÉS API ───────────────────────────────────────────
 window.addEventListener('load', () => {
-  const ck = localStorage.getItem('px_claude');
+  const ck = localStorage.getItem('px_groq');
   const ak = localStorage.getItem('px_apollo');
   const gk = localStorage.getItem('px_google');
-  if (ck) document.getElementById('claudeKey').value = ck;
+  if (ck) document.getElementById('groqKey').value = ck;
   if (ak) document.getElementById('apolloKey').value = ak;
   if (gk) document.getElementById('googleKey').value = gk;
   saveKeys();
@@ -301,16 +301,16 @@ function togglePw(id) {
 }
 
 function saveKeys() {
-  const ck = document.getElementById('claudeKey').value.trim();
+  const ck = document.getElementById('groqKey').value.trim();
   const ak = document.getElementById('apolloKey').value.trim();
   const gk = document.getElementById('googleKey').value.trim();
-  if (ck) localStorage.setItem('px_claude', ck);
+  if (ck) localStorage.setItem('px_groq', ck);
   if (ak) localStorage.setItem('px_apollo', ak);
   if (gk) localStorage.setItem('px_google', gk);
 
   const status = document.getElementById('keyStatus');
   const missing = [];
-  if (!ck) missing.push('Claude (sk-ant-)');
+  if (!ck) missing.push('Claude (gsk_...;
   if (!ak) missing.push('Apollo.io');
   if (!gk) missing.push('Google PageSpeed');
 
@@ -359,12 +359,12 @@ async function lancer() {
   const q = document.getElementById('inpQ').value.trim();
   const v = document.getElementById('inpV').value.trim();
   const nb = document.getElementById('selNb').value;
-  const CLAUDE_KEY = document.getElementById('claudeKey').value.trim();
+  const GROQ_KEY = document.getElementById('groqKey').value.trim();
   const APOLLO_KEY = document.getElementById('apolloKey').value.trim();
   const GOOGLE_KEY = document.getElementById('googleKey').value.trim();
 
   if (!q) { showToast('⚠ Saisissez un secteur ou métier'); return; }
-  if (!CLAUDE_KEY) { showToast('⚠ Clé Claude manquante !'); return; }
+  if (!GROQ_KEY) { showToast('⚠ Clé Groq manquante !'); return; }
 
   allProspects = [];
   currentFilter = 'all';
@@ -451,12 +451,12 @@ Mix : 40% sans site, 35% sites mauvais, 25% sites moyens. Données très réalis
 
   try {
     // Appel via le proxy serveur (évite le problème CORS)
-    const resp = await fetch(PROXY + '/api/claude', {
+    const resp = await fetch(PROXY + '/api/groq', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        apiKey: CLAUDE_KEY,
-        model: 'claude-sonnet-4-20250514',
+        apiKey: GROQ_KEY,
+        model: 'llama-3.3-70b-versatile',
         max_tokens: 1000,
         system: systemPrompt,
         messages: [{ role: 'user', content: userPrompt }]
@@ -464,10 +464,9 @@ Mix : 40% sans site, 35% sites mauvais, 25% sites moyens. Données très réalis
     });
 
     const data = await resp.json();
- if (!data.content || !data.content[0]) throw new Error('Pas de réponse Claude - vérifie ta clé API');
-const raw = data.content[0].text || '';
-const clean = raw.replace(/```json|```/g, '').trim();
-const parsed = JSON.parse(clean);
+    const raw = data.choices?.[0]?.message?.content || data.content?.[0]?.text || '';
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
 
     setP(85, 'Scoring et priorisation...');
     addLog(`✅ ${parsed.length} prospects analysés et qualifiés`);
