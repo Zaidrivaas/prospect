@@ -339,7 +339,7 @@ async function lancer() {
 
   try {
     // ÉTAPE 1 : Chercher les vraies entreprises Apollo
-    const apolloResp = await fetch(PROXY + '/api/apollo/search', {
+    const apolloResp = await fetch(PROXY + '/api/apollo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ apiKey: APOLLO_KEY, sector: q, city: v, nb })
