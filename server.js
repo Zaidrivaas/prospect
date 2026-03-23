@@ -41,18 +41,19 @@ app.post('/api/apollo/search', async (req, res) => {
   const { apiKey, sector, city, nb } = req.body;
   if (!apiKey) return res.status(400).json({ error: 'Clé Apollo manquante' });
   try {
-    const response = await fetch('https://api.apollo.io/v1/mixed_companies/search', {
+    const response = await fetch('https://api.apollo.io/v1/mixed_people/search', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache'
       },
-      body: JSON.stringify({
-        api_key: apiKey,
-        q_organization_keyword_tags: [sector],
-        organization_locations: city ? [city] : ['France'],
-        page: 1,
-        per_page: nb || 8
+     body: JSON.stringify({
+  api_key: apiKey,
+  q_keywords: sector,
+  q_organization_locations: city ? [city + ', France'] : ['France'],
+  page: 1,
+  per_page: nb || 8
+})
       })
     });
     const data = await response.json();
