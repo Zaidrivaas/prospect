@@ -24,12 +24,19 @@ app.post('/api/groq', async (req, res) => {
 app.post('/api/apollo', async (req, res) => {
   try {
     const { apiKey, sector, city, nb } = req.body;
-    const r = await fetch('https://api.apollo.io/v1/organizations/search', {
+    const r = await fetch('https://api.apollo.io/v1/mixed_people/search', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ api_key: apiKey, q_keywords: sector, q_organization_locations: city ? [city + ', France'] : ['France'], page: 1, per_page: nb || 8 })
+      body: JSON.stringify({
+        api_key: apiKey,
+        q_keywords: sector,
+        person_locations: city ? [city + ', France'] : ['France'],
+        page: 1,
+        per_page: nb || 8
+      })
     });
-    res.json(await r.json());
+    const data = await r.json();
+    res.json(data);
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
