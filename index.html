@@ -54,7 +54,7 @@ select option{background:var(--bg2)}
 .prog-pct{font-family:var(--mono);font-size:13px;color:var(--acc)}
 .prog-track{height:5px;background:var(--bg);border-radius:3px;margin-bottom:16px;overflow:hidden}
 .prog-bar{height:100%;background:linear-gradient(90deg,var(--acc),#a24fff);width:0%;transition:width .35s ease;box-shadow:0 0 10px var(--glow)}
-.logbox{background:#04040e;color:#4ade80;border-radius:9px;padding:12px 14px;font-family:var(--mono);font-size:11px;max-height:150px;overflow-y:auto;border:1px solid var(--bord);line-height:1.9}
+.logbox{background:#04040e;color:#4ade80;border-radius:9px;padding:12px 14px;font-family:var(--mono);font-size:11px;max-height:160px;overflow-y:auto;border:1px solid var(--bord);line-height:1.9}
 .logbox::-webkit-scrollbar{width:3px}.logbox::-webkit-scrollbar-thumb{background:var(--bord2);border-radius:2px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
 @media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
@@ -92,7 +92,7 @@ select option{background:var(--bg2)}
 @media(max-width:500px){.metrics{grid-template-columns:repeat(2,1fr)}}
 .metric{background:var(--bg2);border-radius:8px;padding:10px 12px;border:1px solid var(--bord)}
 .metric-l{font-size:9px;color:var(--txt3);font-family:var(--mono);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
-.metric-v{font-size:14px;font-weight:700}
+.metric-v{font-size:13px;font-weight:700}
 .contact-box{background:var(--bg2);border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--bord)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
 .vlinks{display:flex;flex-wrap:wrap;gap:8px}
@@ -116,7 +116,7 @@ select option{background:var(--bg2)}
 .btn-sm{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:var(--body);display:inline-flex;align-items:center;gap:5px}
 .btn-csv{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
 .btn-emails{background:rgba(79,122,255,.12);color:var(--acc2);border:1px solid rgba(79,122,255,.2)}
-.real-badge{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.25);font-size:9px;font-family:var(--mono);padding:2px 7px;border-radius:3px}
+.source-badge{font-size:9px;font-family:var(--mono);padding:2px 7px;border-radius:3px;background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
 </style>
 </head>
 <body>
@@ -126,15 +126,16 @@ select option{background:var(--bg2)}
       <div class="logo-sq">PX</div>
       <div>
         <div class="logo-name">Prospect<b>X</b> Pro</div>
-        <div class="logo-sub">Vrais prospects Apollo · Analyse IA Groq · HOT LEADS</div>
+        <div class="logo-sub">API Gouv · Apollo · PageSpeed · Groq IA</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <div class="badge">Données réelles</div>
+      <div class="badge">Données 100% Réelles</div>
       <div class="dot"></div>
     </div>
   </div>
 
+  <!-- CLÉS API -->
   <div class="card">
     <div class="sec-title">🔑 Clés API</div>
     <div class="row3">
@@ -146,33 +147,34 @@ select option{background:var(--bg2)}
         </div>
       </div>
       <div class="field">
-        <label>Clé Apollo.io</label>
+        <label>Clé Apollo.io (optionnel)</label>
         <div class="pw-wrap">
           <input type="password" id="apolloKey" placeholder="Votre clé Apollo..." oninput="saveKeys()">
           <button class="pw-toggle" onclick="togglePw('apolloKey')">👁</button>
         </div>
       </div>
       <div class="field">
-        <label>Clé Google PageSpeed</label>
+        <label>Clé Google PageSpeed (optionnel)</label>
         <div class="pw-wrap">
           <input type="password" id="googleKey" placeholder="Votre clé Google..." oninput="saveKeys()">
           <button class="pw-toggle" onclick="togglePw('googleKey')">👁</button>
         </div>
       </div>
     </div>
-    <div id="keyStatus" class="key-status">⚠ Entrez vos clés API pour commencer</div>
+    <div id="keyStatus" class="key-status">⚠ Entrez votre clé Groq pour commencer</div>
   </div>
 
+  <!-- RECHERCHE -->
   <div class="card">
     <div class="sec-title">🎯 Paramètres de prospection</div>
     <div class="row2">
       <div class="field">
         <label>Secteur / Métier cible</label>
-        <input type="text" id="inpQ" placeholder="Ex: Restaurant, Plombier, Coiffeur...">
+        <input type="text" id="inpQ" placeholder="Ex: Plombier, Restaurant, Coiffeur...">
       </div>
       <div class="field">
-        <label>Ville / Région</label>
-        <input type="text" id="inpV" placeholder="Ex: Lyon, Paris, Bordeaux...">
+        <label>Ville / Code Postal</label>
+        <input type="text" id="inpV" placeholder="Ex: Lyon, Paris, 69000...">
       </div>
     </div>
     <div class="row3">
@@ -191,6 +193,7 @@ select option{background:var(--bg2)}
     </div>
   </div>
 
+  <!-- PROGRESS -->
   <div class="card prog" id="progCard">
     <div class="prog-hdr">
       <div class="prog-st" id="progSt">Initialisation...</div>
@@ -200,6 +203,7 @@ select option{background:var(--bg2)}
     <div class="logbox" id="logBox"></div>
   </div>
 
+  <!-- STATS -->
   <div class="stats" id="statsEl" style="display:none">
     <div class="stat"><div class="stat-n" id="sTot" style="color:var(--acc)">0</div><div class="stat-l">Analysés</div></div>
     <div class="stat"><div class="stat-n" id="sHot" style="color:#ef4444">0</div><div class="stat-l">🔥 HOT LEADS</div></div>
@@ -207,6 +211,7 @@ select option{background:var(--bg2)}
     <div class="stat"><div class="stat-n" id="sNoSite" style="color:#a78bfa">0</div><div class="stat-l">Sans site</div></div>
   </div>
 
+  <!-- EXPORT -->
   <div class="xbar" id="xbar">
     <div style="font-size:13px;color:var(--txt2)"><b id="xbarCount" style="color:var(--txt)">0</b> prospects qualifiés</div>
     <div style="display:flex;gap:8px">
@@ -215,6 +220,7 @@ select option{background:var(--bg2)}
     </div>
   </div>
 
+  <!-- FILTRES -->
   <div class="filter-bar" id="filterBar" style="display:none">
     <button class="filt active" onclick="setFilter('all',this)">Tous</button>
     <button class="filt" onclick="setFilter('hot',this)">🔥 HOT LEADS</button>
@@ -222,15 +228,22 @@ select option{background:var(--bg2)}
     <button class="filt" onclick="setFilter('nosite',this)">🚫 Sans site</button>
   </div>
 
+  <!-- RESULTS -->
   <div id="cardsList">
     <div class="empty" id="emptyState">
       <div class="empty-ico">🤖</div>
       <div class="empty-t">Agent de prospection prêt</div>
-      <div style="font-size:13px">Vrais prospects Apollo + Analyse IA Groq</div>
+      <div style="font-size:13px;margin-top:8px">
+        🏛 Vraies entreprises françaises (API Gouv)<br>
+        🌐 Sites web réels (Apollo)<br>
+        ⚡ Performance réelle (Google PageSpeed)<br>
+        🧠 Qualification IA (Groq)
+      </div>
     </div>
   </div>
 </div>
 
+<!-- EMAIL MODAL -->
 <div class="overlay" id="emailOverlay" onclick="closeBg(event)">
   <div class="modal">
     <h2>✉ Email de prospection</h2>
@@ -272,19 +285,26 @@ function saveKeys() {
   if (ak) localStorage.setItem('px_apollo', ak);
   if (ggk) localStorage.setItem('px_google', ggk);
   const status = document.getElementById('keyStatus');
-  const missing = [];
-  if (!gk) missing.push('Groq');
-  if (!ak) missing.push('Apollo');
-  if (missing.length === 0) {
-    status.style.background = 'rgba(34,197,94,.1)';
-    status.style.color = '#4ade80';
-    status.style.borderColor = 'rgba(34,197,94,.2)';
-    status.textContent = '✅ Clés configurées — Vrais prospects Apollo + IA Groq !';
-  } else {
+  if (!gk) {
     status.style.background = 'rgba(245,158,11,.1)';
     status.style.color = '#fbbf24';
     status.style.borderColor = 'rgba(245,158,11,.2)';
-    status.textContent = '⚠ Clé(s) manquante(s) : ' + missing.join(' · ');
+    status.textContent = '⚠ Clé Groq manquante (obligatoire)';
+  } else {
+    const extras = [];
+    if (!ak) extras.push('Apollo (contacts)');
+    if (!ggk) extras.push('Google PageSpeed');
+    if (extras.length === 0) {
+      status.style.background = 'rgba(34,197,94,.1)';
+      status.style.color = '#4ade80';
+      status.style.borderColor = 'rgba(34,197,94,.2)';
+      status.textContent = '✅ Toutes les clés configurées — Mode complet !';
+    } else {
+      status.style.background = 'rgba(79,122,255,.1)';
+      status.style.color = '#7b9aff';
+      status.style.borderColor = 'rgba(79,122,255,.2)';
+      status.textContent = `✅ Groq OK · Sans : ${extras.join(', ')} (optionnel)`;
+    }
   }
 }
 
@@ -320,7 +340,6 @@ async function lancer() {
 
   if (!q) { showToast('⚠ Saisissez un secteur ou métier'); return; }
   if (!GROQ_KEY) { showToast('⚠ Clé Groq manquante !'); return; }
-  if (!APOLLO_KEY) { showToast('⚠ Clé Apollo manquante !'); return; }
 
   allProspects = [];
   currentFilter = 'all';
@@ -333,125 +352,132 @@ async function lancer() {
   document.getElementById('cardsList').innerHTML = '';
   document.getElementById('logBox').innerHTML = '';
 
-  setP(5, 'Connexion Apollo...');
-  addLog('🔍 Recherche de vraies entreprises via Apollo.io...');
-  addLog(`🎯 Secteur : ${q}${v ? ' · ' + v : ' · France'}`);
+  setP(5, 'Recherche des vraies entreprises françaises...');
+  addLog('🏛 Connexion à l\'API officielle data.gouv.fr...');
+  addLog(`🎯 Recherche : ${q}${v ? ' à ' + v : ' en France'}`);
 
   try {
-    // ÉTAPE 1 : Chercher les vraies entreprises Apollo
-    const apolloResp = await fetch(PROXY + '/api/apollo', {
+    // ÉTAPE 1 — API Gouv.fr : vraies entreprises
+    const govResp = await fetch(PROXY + '/api/entreprises', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ apiKey: APOLLO_KEY, sector: q, city: v, nb })
+      body: JSON.stringify({ sector: q, city: v, nb })
     });
-    const apolloData = await apolloResp.json();
-    const companies = apolloData.organizations || apolloData.accounts || [];
+    const govData = await govResp.json();
+    const entreprises = govData.results || [];
 
-    if (companies.length === 0) {
-      addLog('⚠ Apollo: 0 résultats. Vérifiez votre clé Apollo ou le secteur.', '#fbbf24');
-      addLog('🤖 Passage en mode IA pour générer des prospects...', '#60a5fa');
-      await lancerModeIA(q, v, nb, GROQ_KEY);
+    if (entreprises.length === 0) {
+      addLog('⚠ Aucune entreprise trouvée — essayez un autre secteur ou ville', '#fbbf24');
+      setP(100, 'Aucun résultat');
+      document.getElementById('btnLancer').disabled = false;
       return;
     }
 
-    addLog(`✅ ${companies.length} vraies entreprises trouvées sur Apollo !`, '#4ade80');
-    setP(30, `${companies.length} entreprises trouvées — Analyse en cours...`);
+    addLog(`✅ ${entreprises.length} vraies entreprises françaises trouvées !`);
+    setP(20, 'Enrichissement des données...');
 
-    // ÉTAPE 2 : Analyser chaque entreprise avec PageSpeed + Groq
-    const rawProspects = [];
-    for (let [i, company] of companies.entries()) {
-      const pct = 30 + Math.round(((i + 1) / companies.length) * 50);
-      setP(pct, `Analyse : ${company.name} (${i+1}/${companies.length})`);
-      addLog(`[${i+1}/${companies.length}] ${company.name}`);
+    const prospects = [];
 
-      const website = company.primary_domain || company.website_url || null;
-      let speed = null;
+    for (let [i, ent] of entreprises.entries()) {
+      const pct = 20 + Math.round(((i + 1) / entreprises.length) * 65);
+      const nom = ent.nom_complet || ent.nom_raison_sociale || 'Entreprise';
+      const ville = ent.siege?.libelle_commune || v || 'France';
+      const cp = ent.siege?.code_postal || '';
+      const adresse = ent.siege?.adresse || '';
+      const siren = ent.siren || '';
+      const ape = ent.activite_principale || '';
 
-      if (website && GOOGLE_KEY) {
+      setP(pct, `[${i+1}/${entreprises.length}] ${nom}`);
+      addLog(`[${i+1}/${entreprises.length}] ${nom} — ${ville}`);
+
+      // ÉTAPE 2 — Apollo : site web + contact
+      let website = null;
+      let contact_name = null;
+      let contact_role = null;
+      let contact_email = null;
+      let contact_phone = null;
+      let contact_linkedin = null;
+
+      if (APOLLO_KEY) {
+        try {
+          const apolloResp = await fetch(PROXY + '/api/apollo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ apiKey: APOLLO_KEY, companyName: nom })
+          });
+          const apolloData = await apolloResp.json();
+          const org = apolloData.organizations?.[0] || apolloData.accounts?.[0];
+          const person = apolloData.people?.[0] || apolloData.contacts?.[0];
+          if (org) {
+            website = org.primary_domain || org.website_url || null;
+            contact_phone = org.sanitized_phone || org.phone || null;
+          }
+          if (person) {
+            contact_name = person.name || null;
+            contact_role = person.title || null;
+            contact_email = person.email || null;
+            contact_linkedin = person.linkedin_url || null;
+          }
+          if (website) addLog(`  → Site: ${website}`, '#60a5fa');
+        } catch(e) {}
+      }
+
+      // ÉTAPE 3 — Google PageSpeed
+      let speed_mobile = null;
+      let speed_desktop = null;
+
+      if (GOOGLE_KEY && website) {
         try {
           const speedResp = await fetch(PROXY + `/api/pagespeed?apiKey=${GOOGLE_KEY}&url=${website}`);
           const speedData = await speedResp.json();
-          speed = Math.round((speedData.lighthouseResult?.categories?.performance?.score || 0) * 100);
-          addLog(`  → ${website} · PageSpeed: ${speed}%`, speed < 50 ? '#fbbf24' : '#4ade80');
+          speed_mobile = Math.round((speedData.lighthouseResult?.categories?.performance?.score || 0) * 100);
+          const speedRespD = await fetch(PROXY + `/api/pagespeed?apiKey=${GOOGLE_KEY}&url=${website}&strategy=desktop`);
+          const speedDataD = await speedRespD.json();
+          speed_desktop = Math.round((speedDataD.lighthouseResult?.categories?.performance?.score || 0) * 100);
+          addLog(`  → PageSpeed: 📱${speed_mobile}% 🖥${speed_desktop}%`, speed_mobile < 50 ? '#fbbf24' : '#4ade80');
         } catch(e) {}
       }
 
       // Score priorité
       let score = 5;
       if (!website) score += 5;
-      else if (speed < 30) score += 4;
-      else if (speed < 50) score += 3;
-      else if (speed < 70) score += 2;
+      else if (speed_mobile !== null && speed_mobile < 30) score += 4;
+      else if (speed_mobile !== null && speed_mobile < 50) score += 3;
+      else if (speed_mobile !== null && speed_mobile < 70) score += 2;
+      else score += 1;
 
       const priority = score >= 9 ? 'HOT_LEAD' : score >= 7 ? 'GOOD_LEAD' : 'LOW_PRIORITY';
       const issues = [];
       if (!website) issues.push('Pas de site web');
-      if (speed && speed < 50) issues.push('Site très lent');
-      if (speed && speed < 30) issues.push('Performance critique');
+      if (speed_mobile !== null && speed_mobile < 30) issues.push('Site très lent (critique)');
+      else if (speed_mobile !== null && speed_mobile < 50) issues.push('Site lent');
+      if (speed_mobile !== null && speed_mobile < 50) issues.push('Mauvais référencement Google');
 
-      rawProspects.push({
-        company: company.name,
-        sector: company.industry || q,
-        city: company.hq_location || v || 'France',
-        address: company.raw_address || '',
-        website: website,
-        pagespeed_mobile: speed,
-        pagespeed_desktop: speed ? Math.min(speed + 10, 100) : null,
-        mobile_friendly: speed ? speed > 50 : null,
-        seo_score: speed ? Math.round(speed * 0.9) : null,
-        design_quality: !speed ? null : speed < 40 ? 'mauvais' : speed < 70 ? 'moyen' : 'bon',
-        issues: issues,
-        contact_name: company.top_contacts?.[0]?.name || null,
-        contact_role: company.top_contacts?.[0]?.title || null,
-        contact_email: company.top_contacts?.[0]?.email || null,
-        contact_phone: company.sanitized_phone || company.phone || null,
-        contact_linkedin: company.linkedin_url || null,
-        lead_score: score,
-        priority: priority,
-        reason: !website ? 'Aucune présence web détectée' : speed < 50 ? `Site lent (${speed}%)` : 'Optimisation possible',
-        siren: company.id || '',
-        source: 'Apollo.io ✅ RÉEL'
+      const reason = !website
+        ? 'Aucune présence web — création de site à proposer'
+        : speed_mobile < 50
+          ? `Site lent (${speed_mobile}%) — optimisation urgente`
+          : 'Site existant — optimisation SEO possible';
+
+      prospects.push({
+        nom, ville, cp, adresse, siren, ape,
+        website, speed_mobile, speed_desktop,
+        mobile_friendly: speed_mobile ? speed_mobile > 50 : null,
+        issues, contact_name, contact_role,
+        contact_email, contact_phone, contact_linkedin,
+        score, priority, reason,
+        source: '🏛 API Gouv.fr'
       });
     }
 
-    allProspects = rawProspects.sort((a, b) => b.lead_score - a.lead_score);
+    allProspects = prospects.sort((a, b) => b.score - a.score);
     setP(100, `✓ ${allProspects.length} vrais prospects analysés !`);
-    addLog(`🔥 ${allProspects.filter(p => p.priority === 'HOT_LEAD').length} HOT LEADS détectés !`, '#fb923c');
-    addLog(`✅ Données réelles Apollo.io`, '#4ade80');
+    addLog(`🔥 ${allProspects.filter(p => p.priority === 'HOT_LEAD').length} HOT LEADS !`, '#fb923c');
+    addLog(`✅ Données 100% réelles — API officielle française`, '#4ade80');
     render();
 
   } catch (e) {
     addLog('❌ Erreur : ' + e.message, '#f87171');
-    setP(0, 'Erreur');
-  }
-
-  document.getElementById('btnLancer').disabled = false;
-}
-
-// Mode IA fallback si Apollo ne retourne rien
-async function lancerModeIA(q, v, nb, GROQ_KEY) {
-  setP(40, 'Génération IA en cours...');
-  try {
-    const resp = await fetch(PROXY + '/api/groq', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        apiKey: GROQ_KEY,
-        system: 'Tu es un agent de prospection web. Génère des prospects réalistes en JSON uniquement, sans texte avant ou après.',
-        messages: [{ role: 'user', content: `Génère ${nb} prospects dans "${q}"${v ? ' à ' + v : ' en France'}. JSON array avec: company, sector, city, address, website(null ou domaine), pagespeed_mobile(null ou 15-90), pagespeed_desktop(null ou 20-95), mobile_friendly, seo_score, design_quality(mauvais/moyen/bon/null), issues(array), contact_name, contact_role, contact_email, contact_phone, contact_linkedin, lead_score(1-10), priority(HOT_LEAD/GOOD_LEAD/LOW_PRIORITY), reason, siren. Mix 40% sans site.` }],
-        max_tokens: 4000
-      })
-    });
-    const data = await resp.json();
-    const raw = data.choices?.[0]?.message?.content || '';
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(clean);
-    allProspects = parsed.map(p => ({ ...p, source: 'IA Groq (simulé)' })).sort((a, b) => b.lead_score - a.lead_score);
-    setP(100, `✓ ${allProspects.length} prospects générés`);
-    addLog(`⚠ Mode IA activé — données simulées`, '#fbbf24');
-    render();
-  } catch(e) {
-    addLog('❌ Erreur IA : ' + e.message, '#f87171');
     setP(0, 'Erreur');
   }
   document.getElementById('btnLancer').disabled = false;
@@ -486,24 +512,23 @@ function render() {
   const filtered = getFiltered();
 
   if (!filtered.length) {
-    list.innerHTML = '<div class="empty"><div class="empty-ico">🔍</div><div class="empty-t">Aucun résultat</div></div>';
+    list.innerHTML = '<div class="empty"><div class="empty-ico">🔍</div><div class="empty-t">Aucun résultat pour ce filtre</div></div>';
     return;
   }
 
   filtered.forEach((p, idx) => {
     const prioClass = p.priority === 'HOT_LEAD' ? 'p-hot' : p.priority === 'GOOD_LEAD' ? 'p-good' : 'p-low';
     const prioLabel = p.priority === 'HOT_LEAD' ? '🔥 HOT LEAD' : p.priority === 'GOOD_LEAD' ? '⚡ GOOD LEAD' : '❄ LOW';
-    const sc = scoreColor(p.lead_score);
-    const isReal = p.source && p.source.includes('Apollo');
-
+    const sc = scoreColor(p.score);
     const issuesTags = (p.issues || []).map(i => `<span class="tag t-red">⚠ ${i}</span>`).join('');
+
     const metricHTML = [
-      { l: 'PageSpeed Mobile', v: p.pagespeed_mobile != null ? p.pagespeed_mobile + '/100' : '—', c: speedColor(p.pagespeed_mobile) },
-      { l: 'PageSpeed Desktop', v: p.pagespeed_desktop != null ? p.pagespeed_desktop + '/100' : '—', c: speedColor(p.pagespeed_desktop) },
+      { l: 'PageSpeed Mobile', v: p.speed_mobile != null ? p.speed_mobile + '/100' : '—', c: speedColor(p.speed_mobile) },
+      { l: 'PageSpeed Desktop', v: p.speed_desktop != null ? p.speed_desktop + '/100' : '—', c: speedColor(p.speed_desktop) },
       { l: 'Mobile Friendly', v: p.mobile_friendly === null ? '—' : p.mobile_friendly ? '✓ Oui' : '✗ Non', c: p.mobile_friendly ? '#22c55e' : p.mobile_friendly === false ? '#ef4444' : '#6b7280' },
-      { l: 'Score SEO', v: p.seo_score != null ? p.seo_score + '/100' : '—', c: speedColor(p.seo_score) },
-      { l: 'Design', v: p.design_quality || '—', c: p.design_quality === 'mauvais' ? '#ef4444' : p.design_quality === 'moyen' ? '#f59e0b' : '#22c55e' },
-      { l: 'Source', v: isReal ? '✅ Réel' : '🤖 IA', c: isReal ? '#4ade80' : '#fbbf24' },
+      { l: 'SIREN', v: p.siren || '—', c: '#4ade80' },
+      { l: 'Code APE', v: p.ape || '—', c: '#60a5fa' },
+      { l: 'Source', v: p.source || '—', c: '#4ade80' },
     ].map(m => `<div class="metric"><div class="metric-l">${m.l}</div><div class="metric-v" style="color:${m.c}">${m.v}</div></div>`).join('');
 
     const card = document.createElement('div');
@@ -513,20 +538,21 @@ function render() {
       <div class="pc-head" onclick="toggleCard(${idx})">
         <div style="flex:1;min-width:0">
           <div class="pc-name">
-            ${p.company}
+            ${p.nom}
             <span class="prio ${prioClass}">${prioLabel}</span>
-            ${isReal ? '<span class="real-badge">RÉEL</span>' : ''}
+            <span class="source-badge">RÉEL ✅</span>
           </div>
           <div class="tags">
             <span class="tag ${p.website ? 't-green' : 't-red'}">${p.website ? '🌐 ' + p.website : '🚫 Pas de site'}</span>
-            ${p.pagespeed_mobile != null ? `<span class="tag ${p.pagespeed_mobile < 50 ? 't-ora' : 't-green'}">📱 ${p.pagespeed_mobile}%</span>` : ''}
-            <span class="tag t-acc">📍 ${p.city}</span>
+            ${p.speed_mobile != null ? `<span class="tag ${p.speed_mobile < 50 ? 't-ora' : 't-green'}">📱 ${p.speed_mobile}%</span>` : ''}
+            ${p.speed_desktop != null ? `<span class="tag ${p.speed_desktop < 50 ? 't-ora' : 't-green'}">🖥 ${p.speed_desktop}%</span>` : ''}
+            <span class="tag t-acc">📍 ${p.ville}${p.cp ? ' ' + p.cp : ''}</span>
             ${p.contact_phone ? `<span class="tag t-grey">📞 ${p.contact_phone}</span>` : ''}
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <div class="score-ring" style="color:${sc};border-color:${sc};background:${sc}18">
-            <span style="font-size:17px;line-height:1">${p.lead_score}</span>
+            <span style="font-size:17px;line-height:1">${p.score}</span>
             <span style="font-size:8px;font-family:var(--mono)">/10</span>
           </div>
           <span class="arrow" id="arr-${idx}">▼</span>
@@ -534,7 +560,7 @@ function render() {
       </div>
       <div class="pc-det" id="det-${idx}">
         <div class="reason-box">💡 <b>Pourquoi prospecter :</b> ${p.reason}</div>
-        ${p.issues?.length ? `<div style="margin-bottom:14px"><div style="font-size:10px;font-family:var(--mono);color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Problèmes détectés</div><div class="tags">${issuesTags}</div></div>` : ''}
+        ${p.issues?.length ? `<div style="margin-bottom:14px"><div style="font-size:10px;font-family:var(--mono);color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">⚠ Problèmes détectés</div><div class="tags">${issuesTags}</div></div>` : ''}
         <div class="metrics">${metricHTML}</div>
         <div class="contact-box">
           <div style="font-size:10px;font-family:var(--mono);color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">👤 Contact</div>
@@ -543,11 +569,12 @@ function render() {
             <div style="color:var(--txt2)">Rôle : <span style="color:var(--txt)">${p.contact_role || '—'}</span></div>
             <div style="color:var(--txt2)">📧 <span style="color:var(--acc2)">${p.contact_email || '—'}</span></div>
             <div style="color:var(--txt2)">📞 <span style="color:#4ade80">${p.contact_phone || '—'}</span></div>
-            ${p.address ? `<div style="grid-column:span 2;color:var(--txt2)">📬 <span style="color:var(--txt)">${p.address}</span></div>` : ''}
+            ${p.adresse ? `<div style="grid-column:span 2;color:var(--txt2)">📬 <span style="color:var(--txt)">${p.adresse}</span></div>` : ''}
           </div>
         </div>
         <div class="vlinks">
-          <a href="https://www.google.com/search?q=${encodeURIComponent(p.company + ' ' + p.city)}" target="_blank" class="vlink vl-g">🔍 Google</a>
+          <a href="https://www.google.com/search?q=${encodeURIComponent(p.nom + ' ' + p.ville)}" target="_blank" class="vlink vl-g">🔍 Google</a>
+          <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/${p.siren}" target="_blank" class="vlink vl-site">📄 Fiche officielle</a>
           ${p.website ? `<a href="https://${p.website}" target="_blank" class="vlink vl-site">🌐 Site</a>` : ''}
           ${p.contact_linkedin ? `<a href="${p.contact_linkedin}" target="_blank" class="vlink vl-li">💼 LinkedIn</a>` : ''}
           <button class="vlink vl-mail" onclick="openEmail(${idx})">✉ Email</button>
@@ -568,14 +595,14 @@ function toggleCard(idx) {
 function genEmail(p) {
   const prenom = p.contact_name ? p.contact_name.split(' ')[0] : '';
   const salut = prenom ? `Bonjour ${prenom},` : 'Bonjour,';
-  if (!p.website) return `Objet : Création de site internet pour ${p.company}\n\n${salut}\n\nJe me permets de vous contacter car ${p.company} ne dispose pas encore de site web.\n\nAujourd'hui, 80% des clients cherchent un prestataire en ligne avant tout contact. Une présence web professionnelle vous apporterait de nouveaux clients à ${p.city} chaque semaine.\n\nJe propose une création de site clé en main adapté à votre activité, avec :\n• Design moderne et mobile\n• Référencement Google inclus\n• Livraison en 7 jours\n\nSeriez-vous disponible pour un appel de 15 min cette semaine ?\n\nCordialement`;
-  if (p.pagespeed_mobile && p.pagespeed_mobile < 50) return `Objet : Votre site perd des clients chaque jour\n\n${salut}\n\nJ'ai analysé votre site ${p.website} : score PageSpeed mobile de ${p.pagespeed_mobile}/100.\n\n53% des visiteurs quittent un site qui met plus de 3 secondes à charger. Google pénalise aussi les sites lents.\n\nJe peux optimiser votre site rapidement.\n\nUn audit gratuit vous intéresse ?\n\nCordialement`;
-  return `Objet : Améliorer votre visibilité à ${p.city}\n\n${salut}\n\nJ'ai analysé la présence en ligne de ${p.company} et identifié des axes d'amélioration.\n\nQuelques optimisations pourraient augmenter significativement votre visibilité sur Google.\n\nJe vous propose un audit gratuit de 20 minutes ?\n\nCordialement`;
+  if (!p.website) return `Objet : Création de site internet pour ${p.nom}\n\n${salut}\n\nJe me permets de vous contacter car ${p.nom} ne dispose pas encore de site web.\n\nAujourd'hui, 80% des clients cherchent un prestataire en ligne avant tout contact. Un site professionnel vous apporterait de nouveaux clients à ${p.ville} chaque semaine.\n\nJe propose une création de site clé en main :\n• Design moderne et mobile\n• Référencement Google inclus\n• Livraison en 7 jours\n\nSeriez-vous disponible pour un appel de 15 min ?\n\nCordialement`;
+  if (p.speed_mobile && p.speed_mobile < 50) return `Objet : Votre site perd des clients chaque jour\n\n${salut}\n\nJ'ai analysé votre site ${p.website} : score PageSpeed mobile de ${p.speed_mobile}/100.\n\n53% des visiteurs quittent un site qui met plus de 3 secondes à charger. Google pénalise aussi les sites lents dans ses résultats.\n\nProblèmes détectés :\n${(p.issues || []).map(i => '• ' + i).join('\n')}\n\nJe peux optimiser votre site rapidement.\n\nUn audit gratuit vous intéresse ?\n\nCordialement`;
+  return `Objet : Améliorer votre visibilité à ${p.ville}\n\n${salut}\n\nJ'ai analysé la présence en ligne de ${p.nom} et identifié des axes d'amélioration.\n\nQuelques optimisations SEO ciblées pourraient augmenter significativement votre visibilité sur Google à ${p.ville}.\n\nJe vous propose un audit gratuit de 20 minutes ?\n\nCordialement`;
 }
 
 function openEmail(idx) {
   const p = getFiltered()[idx] || allProspects[idx];
-  document.getElementById('emailSub').textContent = p.company + ' · ' + p.city;
+  document.getElementById('emailSub').textContent = p.nom + ' · ' + p.ville;
   document.getElementById('emailContent').textContent = genEmail(p);
   document.getElementById('emailOverlay').classList.add('open');
 }
@@ -588,14 +615,14 @@ function copyEmail() {
 }
 
 function exportCSV() {
-  const rows = [['Source','Priorité','Score','Entreprise','Secteur','Ville','Adresse','Site','PageSpeed Mobile','PageSpeed Desktop','Problèmes','Contact','Rôle','Email','Téléphone','LinkedIn','Raison']];
-  allProspects.forEach(p => rows.push([p.source||'',p.priority,p.lead_score,p.company,p.sector,p.city,p.address||'',p.website||'',p.pagespeed_mobile??'',p.pagespeed_desktop??'',(p.issues||[]).join('; '),p.contact_name||'',p.contact_role||'',p.contact_email||'',p.contact_phone||'',p.contact_linkedin||'',p.reason||'']));
+  const rows = [['Priorité','Score','Entreprise','Ville','CP','Adresse','SIREN','APE','Site','PageSpeed Mobile','PageSpeed Desktop','Mobile Friendly','Problèmes','Contact','Rôle','Email','Téléphone','LinkedIn','Raison']];
+  allProspects.forEach(p => rows.push([p.priority,p.score,p.nom,p.ville,p.cp,p.adresse,p.siren,p.ape,p.website||'',p.speed_mobile??'',p.speed_desktop??'',p.mobile_friendly??'',(p.issues||[]).join('; '),p.contact_name||'',p.contact_role||'',p.contact_email||'',p.contact_phone||'',p.contact_linkedin||'',p.reason||'']));
   const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
   dl(new Blob(['\ufeff'+csv],{type:'text/csv'}),`prospects_${document.getElementById('inpQ').value}_${new Date().toISOString().slice(0,10)}.csv`);
   showToast('⬇ CSV exporté !');
 }
 function exportEmails() {
-  const txt = allProspects.map(p=>`${'='.repeat(50)}\n${p.company} — ${p.city} [${p.priority} · ${p.source}]\n${'='.repeat(50)}\n${genEmail(p)}\n`).join('\n');
+  const txt = allProspects.map(p=>`${'='.repeat(50)}\n${p.nom} — ${p.ville} [${p.priority} · Score: ${p.score}/10]\n${'='.repeat(50)}\n${genEmail(p)}\n`).join('\n');
   dl(new Blob([txt],{type:'text/plain'}),'emails_prospection.txt');
   showToast('✉ Emails exportés !');
 }
