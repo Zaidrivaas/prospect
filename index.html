@@ -32,9 +32,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .sec-title::after{content:'';flex:1;height:1px;background:var(--bord)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
-@media(max-width:700px){.row2,.row3,.row4{grid-template-columns:1fr 1fr}}
-@media(max-width:450px){.row2,.row3,.row4{grid-template-columns:1fr}}
+@media(max-width:600px){.row2,.row3{grid-template-columns:1fr}}
 .field{display:flex;flex-direction:column;gap:5px}
 .field label{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--txt2);text-transform:uppercase;letter-spacing:.5px}
 input,select{font-family:var(--body);font-size:14px;background:var(--bg2);border:1px solid var(--bord2);border-radius:9px;padding:11px 14px;outline:none;width:100%;color:var(--txt);transition:.2s}
@@ -48,18 +46,18 @@ select option{background:var(--bg2)}
 .btn{padding:12px 22px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;border:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s;font-family:var(--body);width:100%}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .btn-p{background:linear-gradient(135deg,#4f7aff,#a24fff);color:#fff;box-shadow:0 4px 22px rgba(79,122,255,.4)}
-.btn-p:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,122,255,.55)}
+.btn-p:hover:not(:disabled){transform:translateY(-2px)}
 .btn-o{background:transparent;border:1px solid var(--bord2);color:var(--txt2)}
 .prog{display:none}.prog.on{display:block}
 .prog-hdr{display:flex;justify-content:space-between;margin-bottom:10px}
 .prog-st{font-size:13px;font-weight:600}
 .prog-pct{font-family:var(--mono);font-size:13px;color:var(--acc)}
 .prog-track{height:5px;background:var(--bg);border-radius:3px;margin-bottom:16px;overflow:hidden}
-.prog-bar{height:100%;background:linear-gradient(90deg,var(--acc),#a24fff);width:0%;transition:width .35s ease;box-shadow:0 0 10px var(--glow)}
+.prog-bar{height:100%;background:linear-gradient(90deg,var(--acc),#a24fff);width:0%;transition:width .35s ease}
 .logbox{background:#04040e;color:#4ade80;border-radius:9px;padding:12px 14px;font-family:var(--mono);font-size:11px;max-height:160px;overflow-y:auto;border:1px solid var(--bord);line-height:1.9}
-.logbox::-webkit-scrollbar{width:3px}.logbox::-webkit-scrollbar-thumb{background:var(--bord2);border-radius:2px}
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:12px}
-@media(max-width:600px){.stats{grid-template-columns:repeat(3,1fr)}}
+.logbox::-webkit-scrollbar{width:3px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+@media(max-width:500px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--surf);border:1px solid var(--bord);border-radius:12px;padding:14px;text-align:center}
 .stat-n{font-family:var(--head);font-size:26px;font-weight:800;line-height:1}
 .stat-l{font-size:9px;color:var(--txt3);font-family:var(--mono);letter-spacing:.5px;text-transform:uppercase;margin-top:4px}
@@ -76,8 +74,7 @@ select option{background:var(--bg2)}
 .prio{font-size:10px;font-family:var(--mono);padding:2px 9px;border-radius:4px;font-weight:700}
 .p-hot{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
 .p-good{background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3)}
-.p-low{background:rgba(99,102,241,.15);color:#818cf8;border:1px solid rgba(99,102,241,.3)}
-.p-amateur{background:rgba(239,68,68,.2);color:#ff6b6b;border:1px solid rgba(239,68,68,.4)}
+.p-nosite{background:rgba(139,0,0,.2);color:#ff4444;border:1px solid rgba(139,0,0,.3)}
 .tags{display:flex;flex-wrap:wrap;gap:5px}
 .tag{font-size:10px;font-family:var(--mono);padding:3px 9px;border-radius:20px;font-weight:500}
 .t-red{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.18)}
@@ -92,7 +89,7 @@ select option{background:var(--bg2)}
 .pc-det{display:none;padding:16px 20px;border-top:1px solid var(--bord)}
 .pc-det.open{display:block}
 .reason-box{background:rgba(79,122,255,.08);border:1px solid rgba(79,122,255,.15);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--acc2)}
-.amateur-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#ff6b6b}
+.amateur-box{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#ff6b6b}
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 @media(max-width:500px){.metrics{grid-template-columns:repeat(2,1fr)}}
 .metric{background:var(--bg2);border-radius:8px;padding:10px 12px;border:1px solid var(--bord)}
@@ -118,10 +115,12 @@ select option{background:var(--bg2)}
 .btn-sm{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:var(--body);display:inline-flex;align-items:center;gap:5px}
 .btn-csv{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
 .btn-emails{background:rgba(79,122,255,.12);color:var(--acc2);border:1px solid rgba(79,122,255,.2)}
-/* Secteurs suggérés */
 .secteurs-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .secteur-btn{padding:5px 12px;border-radius:20px;font-size:11px;background:rgba(79,122,255,.1);color:var(--acc2);border:1px solid rgba(79,122,255,.2);cursor:pointer;font-family:var(--body);transition:.15s}
 .secteur-btn:hover{background:rgba(79,122,255,.25)}
+.mode-tabs{display:flex;gap:8px;margin-bottom:12px}
+.mode-tab{flex:1;padding:10px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--bord);background:var(--surf);color:var(--txt2);font-family:var(--body);text-align:center;transition:.2s}
+.mode-tab.active{background:rgba(79,122,255,.15);border-color:rgba(79,122,255,.35);color:var(--acc2)}
 </style>
 </head>
 <body>
@@ -131,11 +130,11 @@ select option{background:var(--bg2)}
       <div class="logo-sq">PX</div>
       <div>
         <div class="logo-name">Prospect<b>X</b> Pro</div>
-        <div class="logo-sub">API Gouv · Google Search · PageSpeed · Groq IA</div>
+        <div class="logo-sub">Wix · WordPress · Jimdo · Sans site · HOT LEADS</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <div class="badge">100% Réel</div>
+      <div class="badge">Sites amateurs détectés</div>
       <div class="dot"></div>
     </div>
   </div>
@@ -143,7 +142,7 @@ select option{background:var(--bg2)}
   <!-- CLÉS API -->
   <div class="card">
     <div class="sec-title">🔑 Clés API</div>
-    <div class="row2">
+    <div class="row3">
       <div class="field">
         <label>Clé Groq (obligatoire)</label>
         <div class="pw-wrap">
@@ -158,26 +157,29 @@ select option{background:var(--bg2)}
           <button class="pw-toggle" onclick="togglePw('googleKey')">👁</button>
         </div>
       </div>
-    </div>
-    <div class="row2">
       <div class="field">
-        <label>Google Search Engine ID (obligatoire)</label>
-        <input type="text" id="searchEngineId" placeholder="Ex: 02486e05f4789412f" oninput="saveKeys()">
-      </div>
-      <div class="field">
-        <label>Clé Apollo.io (optionnel)</label>
-        <div class="pw-wrap">
-          <input type="password" id="apolloKey" placeholder="Votre clé Apollo..." oninput="saveKeys()">
-          <button class="pw-toggle" onclick="togglePw('apolloKey')">👁</button>
-        </div>
+        <label>Search Engine ID (obligatoire)</label>
+        <input type="text" id="searchEngineId" placeholder="02486e05..." oninput="saveKeys()">
       </div>
     </div>
     <div id="keyStatus" class="key-status">⚠ Entrez vos clés pour commencer</div>
   </div>
 
-  <!-- RECHERCHE -->
+  <!-- MODE -->
   <div class="card">
-    <div class="sec-title">🎯 Paramètres de prospection</div>
+    <div class="sec-title">🎯 Mode de recherche</div>
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="modeAmateur" onclick="setMode('amateur')">
+        😬 Sites amateurs (Wix/WordPress/Jimdo...)
+      </button>
+      <button class="mode-tab" id="modeSanssite" onclick="setMode('sanssite')">
+        🚫 Sans site web (API Gouv.fr)
+      </button>
+      <button class="mode-tab" id="modeMixte" onclick="setMode('mixte')">
+        🔀 Mixte (les deux)
+      </button>
+    </div>
+
     <div class="row2">
       <div class="field">
         <label>Secteur / Métier cible</label>
@@ -185,24 +187,23 @@ select option{background:var(--bg2)}
         <div class="secteurs-grid" id="secteursGrid"></div>
       </div>
       <div class="field">
-        <label>Ville / Code Postal</label>
-        <input type="text" id="inpV" placeholder="Ex: Lyon, Paris, 69000...">
+        <label>Ville / Région</label>
+        <input type="text" id="inpV" placeholder="Ex: Lyon, Paris, Bordeaux...">
       </div>
     </div>
     <div class="row2">
       <div class="field">
         <label>Nombre de prospects</label>
         <select id="selNb">
-          <option value="5">5 prospects</option>
-          <option value="10" selected>10 prospects</option>
-          <option value="15">15 prospects</option>
+          <option value="10">10 prospects</option>
+          <option value="15" selected>15 prospects</option>
           <option value="20">20 prospects</option>
           <option value="25">25 prospects</option>
         </select>
       </div>
       <div class="field" style="justify-content:flex-end">
         <label>&nbsp;</label>
-        <button class="btn btn-p" id="btnLancer" onclick="lancer()">🤖 Nouvelle recherche</button>
+        <button class="btn btn-p" id="btnLancer" onclick="lancer()">🤖 Lancer la prospection</button>
       </div>
     </div>
   </div>
@@ -220,15 +221,14 @@ select option{background:var(--bg2)}
   <!-- STATS -->
   <div class="stats" id="statsEl" style="display:none">
     <div class="stat"><div class="stat-n" id="sTot" style="color:var(--acc)">0</div><div class="stat-l">Total</div></div>
-    <div class="stat"><div class="stat-n" id="sHot" style="color:#ef4444">0</div><div class="stat-l">🔥 HOT</div></div>
-    <div class="stat"><div class="stat-n" id="sGood" style="color:#f59e0b">0</div><div class="stat-l">⚡ GOOD</div></div>
-    <div class="stat"><div class="stat-n" id="sAmateur" style="color:#ff6b6b">0</div><div class="stat-l">😬 Amateur</div></div>
+    <div class="stat"><div class="stat-n" id="sAmateur" style="color:#ff6b6b">0</div><div class="stat-l">😬 Amateurs</div></div>
     <div class="stat"><div class="stat-n" id="sNoSite" style="color:#a78bfa">0</div><div class="stat-l">🚫 Sans site</div></div>
+    <div class="stat"><div class="stat-n" id="sHot" style="color:#ef4444">0</div><div class="stat-l">🔥 HOT</div></div>
   </div>
 
   <!-- EXPORT -->
   <div class="xbar" id="xbar">
-    <div style="font-size:13px;color:var(--txt2)"><b id="xbarCount" style="color:var(--txt)">0</b> prospects</div>
+    <div style="font-size:13px;color:var(--txt2)"><b id="xbarCount" style="color:var(--txt)">0</b> prospects trouvés</div>
     <div style="display:flex;gap:8px">
       <button class="btn-sm btn-csv" onclick="exportCSV()">⬇ CSV</button>
       <button class="btn-sm btn-emails" onclick="exportEmails()">✉ Emails</button>
@@ -238,22 +238,19 @@ select option{background:var(--bg2)}
   <!-- FILTRES -->
   <div class="filter-bar" id="filterBar" style="display:none">
     <button class="filt active" onclick="setFilter('all',this)">Tous</button>
-    <button class="filt" onclick="setFilter('hot',this)">🔥 HOT LEADS</button>
-    <button class="filt" onclick="setFilter('good',this)">⚡ GOOD LEADS</button>
-    <button class="filt" onclick="setFilter('amateur',this)">😬 Site amateur</button>
+    <button class="filt" onclick="setFilter('amateur',this)">😬 Sites amateurs</button>
     <button class="filt" onclick="setFilter('nosite',this)">🚫 Sans site</button>
+    <button class="filt" onclick="setFilter('hot',this)">🔥 HOT LEADS</button>
   </div>
 
   <div id="cardsList">
     <div class="empty" id="emptyState">
-      <div class="empty-ico">🤖</div>
-      <div class="empty-t">Agent de prospection prêt</div>
-      <div style="font-size:13px;margin-top:10px;line-height:2">
-        🏛 Vraies entreprises (API Gouv.fr)<br>
-        🔍 Détection site via Google Search<br>
-        😬 Sites Wix/WordPress/Jimdo détectés<br>
-        ⚡ Score PageSpeed réel<br>
-        🔄 Nouveaux résultats à chaque recherche
+      <div class="empty-ico">🎯</div>
+      <div class="empty-t">Choisissez votre mode de recherche</div>
+      <div style="font-size:13px;margin-top:10px;line-height:2.2">
+        😬 <b>Sites amateurs</b> → trouve les entreprises sur Wix, WordPress.com, Jimdo...<br>
+        🚫 <b>Sans site</b> → trouve les entreprises sans aucune présence web<br>
+        🔀 <b>Mixte</b> → combine les deux pour plus de prospects
       </div>
     </div>
   </div>
@@ -275,66 +272,47 @@ select option{background:var(--bg2)}
 
 <script>
 const PROXY = '';
-const AMATEUR_PLATFORMS = ['wordpress.com','wixsite.com','wix.com','jimdo.com','jimdosite.com','webnode.fr','webnode.com','site123.me','weebly.com','squarespace.com','blogger.com','blogspot.com','free.fr','e-monsite.com','sitew.com','kazeo.com','over-blog.com'];
-
-// TOUS LES SECTEURS POSSIBLES
 const TOUS_SECTEURS = [
-  // Artisanat & BTP
-  'Plombier','Électricien','Menuisier','Charpentier','Maçon','Carreleur','Peintre en bâtiment',
-  'Couvreur','Plaquiste','Chauffagiste','Climatisation','Serrurier','Vitrier','Jardinier',
-  'Paysagiste','Pisciniste','Architecte','Géomètre','Ascensoriste',
-  // Beauté & Bien-être
-  'Coiffeur','Barbier','Esthéticienne','Institut de beauté','Onglerie','Tatoueur','Spa',
-  'Massage','Ostéopathe','Kinésithérapeute','Podologue','Orthophoniste','Psychologue',
-  // Restauration & Alimentation
-  'Restaurant','Boulangerie','Pâtisserie','Boucherie','Traiteur','Pizzeria','Sushi',
-  'Café','Bar','Épicerie','Fromagerie','Cave à vins','Chocolatier',
-  // Automobile
-  'Garage automobile','Carrosserie','Contrôle technique','Pneumatiques','Lavage auto',
-  'Dépannage auto','Concessionnaire','Location voiture',
-  // Santé
-  'Médecin','Dentiste','Opticien','Pharmacie','Infirmier','Vétérinaire',
-  'Laboratoire analyse','Radiologie','Cabinet médical',
-  // Commerce & Services
-  'Fleuriste','Librairie','Bijouterie','Horlogerie','Pressing','Cordonnerie',
-  'Déménagement','Nettoyage','Pressing industriel','Imprimerie','Photographe',
-  // Éducation & Formation
-  'École de conduite','Cours particuliers','École de musique','Salle de sport',
-  'Yoga','Pilates','Arts martiaux','Centre de formation',
-  // Immobilier & Finance
-  'Agence immobilière','Notaire','Expert-comptable','Avocat','Assurance','Banque',
-  // Tech & Digital
-  'Informatique','Réparation téléphone','Développeur web','Agence communication',
-  'Imprimerie numérique','Sécurité informatique',
-  // Hôtellerie
-  'Hôtel','Chambre hôtes','Location saisonnière','Camping','Résidence tourisme'
+  'Plombier','Électricien','Menuisier','Charpentier','Maçon','Carreleur',
+  'Peintre bâtiment','Couvreur','Chauffagiste','Serrurier','Jardinier','Paysagiste',
+  'Coiffeur','Barbier','Esthéticienne','Onglerie','Tatoueur','Spa','Massage',
+  'Ostéopathe','Kinésithérapeute','Podologue','Psychologue',
+  'Restaurant','Boulangerie','Pâtisserie','Boucherie','Traiteur','Pizzeria',
+  'Café','Bar','Épicerie','Chocolatier',
+  'Garage auto','Carrosserie','Lavage auto','Dépannage auto',
+  'Médecin','Dentiste','Opticien','Pharmacie','Vétérinaire',
+  'Fleuriste','Librairie','Bijouterie','Pressing','Cordonnerie',
+  'Déménagement','Nettoyage','Photographe','Imprimerie',
+  'École conduite','Cours particuliers','École musique','Salle de sport',
+  'Yoga','Arts martiaux','Agence immobilière','Expert-comptable',
+  'Avocat','Informatique','Réparation téléphone'
 ];
 
 let allProspects = [];
 let currentFilter = 'all';
+let currentMode = 'amateur';
 let searchCount = 0;
 
-// Affiche les secteurs suggérés
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('mode' + mode.charAt(0).toUpperCase() + mode.slice(1)).classList.add('active');
+}
+
 function initSecteurs() {
   const grid = document.getElementById('secteursGrid');
-  // Affiche 12 secteurs aléatoires
-  const shuffled = [...TOUS_SECTEURS].sort(() => Math.random() - 0.5).slice(0, 12);
+  const shuffled = [...TOUS_SECTEURS].sort(() => Math.random() - 0.5).slice(0, 10);
   grid.innerHTML = shuffled.map(s =>
     `<button class="secteur-btn" onclick="setSecteur('${s}')">${s}</button>`
   ).join('');
 }
 
-function setSecteur(s) {
-  document.getElementById('inpQ').value = s;
-}
+function setSecteur(s) { document.getElementById('inpQ').value = s; }
 
 window.addEventListener('load', () => {
-  const vals = ['groqKey','googleKey','searchEngineId','apolloKey'];
-  const keys = ['px_groq','px_google','px_cx','px_apollo'];
-  vals.forEach((id, i) => {
-    const v = localStorage.getItem(keys[i]);
-    if (v) document.getElementById(id).value = v;
-  });
+  const ids = ['groqKey','googleKey','searchEngineId'];
+  const keys = ['px_groq','px_google','px_cx'];
+  ids.forEach((id, i) => { const v = localStorage.getItem(keys[i]); if (v) document.getElementById(id).value = v; });
   saveKeys();
   initSecteurs();
 });
@@ -348,11 +326,9 @@ function saveKeys() {
   const gk = document.getElementById('groqKey').value.trim();
   const ggk = document.getElementById('googleKey').value.trim();
   const cx = document.getElementById('searchEngineId').value.trim();
-  const ak = document.getElementById('apolloKey').value.trim();
   if (gk) localStorage.setItem('px_groq', gk);
   if (ggk) localStorage.setItem('px_google', ggk);
   if (cx) localStorage.setItem('px_cx', cx);
-  if (ak) localStorage.setItem('px_apollo', ak);
   const status = document.getElementById('keyStatus');
   const missing = [];
   if (!gk) missing.push('Groq');
@@ -360,7 +336,7 @@ function saveKeys() {
   if (!cx) missing.push('Search Engine ID');
   if (missing.length === 0) {
     status.style.cssText = 'background:rgba(34,197,94,.1);color:#4ade80;border-color:rgba(34,197,94,.2)';
-    status.textContent = '✅ Clés configurées — Nouveaux résultats à chaque recherche !';
+    status.textContent = '✅ Clés configurées — Prêt à trouver de vrais prospects !';
   } else {
     status.style.cssText = 'background:rgba(245,158,11,.1);color:#fbbf24;border-color:rgba(245,158,11,.2)';
     status.textContent = '⚠ Manquant : ' + missing.join(' · ');
@@ -387,7 +363,7 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('on'), 2600);
 }
 function speedColor(s) { return !s ? '#6b7280' : s < 50 ? '#ef4444' : s < 80 ? '#f59e0b' : '#22c55e'; }
-function scoreColor(s) { return s >= 8 ? '#ef4444' : s >= 6 ? '#f59e0b' : s >= 4 ? '#60a5fa' : '#6b7280'; }
+function scoreColor(s) { return s >= 9 ? '#ef4444' : s >= 7 ? '#f59e0b' : '#60a5fa'; }
 
 async function lancer() {
   const q = document.getElementById('inpQ').value.trim();
@@ -400,7 +376,6 @@ async function lancer() {
   if (!q) { showToast('⚠ Saisissez un secteur'); return; }
   if (!GROQ_KEY || !GOOGLE_KEY || !CX) { showToast('⚠ Clés API manquantes !'); return; }
 
-  // RESET COMPLET — nouvelle recherche fraîche
   searchCount++;
   allProspects = [];
   currentFilter = 'all';
@@ -415,94 +390,100 @@ async function lancer() {
   document.querySelectorAll('.filt').forEach(b => b.classList.remove('active'));
   document.querySelector('.filt').classList.add('active');
 
-  setP(5, 'Nouvelle recherche lancée...');
-  addLog(`🔄 Recherche #${searchCount} — Nouveaux prospects...`);
-  addLog(`🎯 ${q}${v ? ' à ' + v : ' en France'} · ${nb} prospects`);
+  setP(5, 'Lancement de la recherche...');
+  addLog(`🔄 Recherche #${searchCount} · Mode: ${currentMode} · ${q}${v?' à '+v:''}`);
 
   try {
-    const govResp = await fetch(PROXY + '/api/entreprises', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sector: q, city: v, nb })
-    });
-    const govData = await govResp.json();
-    const entreprises = govData.results || [];
+    let prospects = [];
 
-    if (!entreprises.length) {
-      addLog('⚠ Aucune entreprise trouvée', '#fbbf24');
-      setP(100, 'Aucun résultat');
-      document.getElementById('btnLancer').disabled = false;
-      return;
+    // MODE AMATEUR : cherche directement les sites Wix/WordPress/etc
+    if (currentMode === 'amateur' || currentMode === 'mixte') {
+      setP(15, 'Recherche sites Wix, WordPress, Jimdo...');
+      addLog('🔍 Scan des sites amateurs via Google...');
+
+      const amateurResp = await fetch(PROXY + '/api/searchamateur', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sector: q, city: v, googleKey: GOOGLE_KEY, searchEngineId: CX, nb: currentMode === 'mixte' ? Math.ceil(nb/2) : nb })
+      });
+      const amateurData = await amateurResp.json();
+      const amateurResults = amateurData.results || [];
+
+      addLog(`✅ ${amateurResults.length} sites amateurs trouvés !`, '#ff6b6b');
+
+      for (const r of amateurResults) {
+        // PageSpeed pour chaque site amateur
+        let speed = null;
+        try {
+          const speedResp = await fetch(PROXY + `/api/pagespeed?apiKey=${GOOGLE_KEY}&url=${r.website}`);
+          const speedData = await speedResp.json();
+          speed = Math.round((speedData.lighthouseResult?.categories?.performance?.score || 0) * 100);
+        } catch(e) {}
+
+        addLog(`  😬 ${r.nom} → ${r.website} (${r.platformName})${speed ? ' · '+speed+'%' : ''}`, '#ff6b6b');
+
+        prospects.push({
+          nom: r.nom,
+          ville: v || 'France',
+          website: r.website,
+          url: r.url,
+          isAmateur: true,
+          platformName: r.platformName,
+          snippet: r.snippet,
+          speed_mobile: speed,
+          score: 9,
+          priority: 'HOT_LEAD',
+          isNoSite: false,
+          reason: `Site hébergé sur ${r.platformName} — image amateur, pas de SEO, refonte urgente`,
+          issues: [`Site ${r.platformName}`, 'Pas de domaine propre', 'SEO inexistant']
+        });
+      }
     }
 
-    addLog(`✅ ${entreprises.length} entreprises trouvées (page aléatoire) !`);
+    // MODE SANS SITE : cherche via API Gouv
+    if (currentMode === 'sanssite' || currentMode === 'mixte') {
+      setP(50, 'Recherche entreprises sans site web...');
+      addLog('🏛 Scan API Gouv.fr pour entreprises sans site...');
 
-    const prospects = [];
+      const govResp = await fetch(PROXY + '/api/entreprises', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sector: q, city: v, nb: currentMode === 'mixte' ? Math.ceil(nb/2) : nb })
+      });
+      const govData = await govResp.json();
+      const entreprises = govData.results || [];
 
-    for (let [i, ent] of entreprises.entries()) {
-      const pct = 10 + Math.round(((i + 1) / entreprises.length) * 80);
-      const nom = ent.nom_complet || ent.nom_raison_sociale || 'Entreprise';
-      const ville = ent.siege?.libelle_commune || v || 'France';
-      const cp = ent.siege?.code_postal || '';
-      const adresse = ent.siege?.adresse || '';
-      const siren = ent.siren || '';
-      const ape = ent.activite_principale || '';
+      addLog(`✅ ${entreprises.length} entreprises trouvées`);
 
-      setP(pct, `[${i+1}/${entreprises.length}] ${nom}`);
-      addLog(`[${i+1}/${entreprises.length}] ${nom}`);
+      for (const ent of entreprises) {
+        const nom = ent.nom_complet || ent.nom_raison_sociale || 'Entreprise';
+        const ville = ent.siege?.libelle_commune || v || 'France';
+        addLog(`  🚫 ${nom} — ${ville}`, '#a78bfa');
 
-      // Recherche site web
-      let website = null, isAmateur = false, platformName = null;
-      try {
-        const siteResp = await fetch(PROXY + '/api/findsite', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ companyName: nom, city: ville, googleKey: GOOGLE_KEY, searchEngineId: CX })
+        prospects.push({
+          nom,
+          ville,
+          cp: ent.siege?.code_postal || '',
+          adresse: ent.siege?.adresse || '',
+          siren: ent.siren || '',
+          ape: ent.activite_principale || '',
+          website: null,
+          isAmateur: false,
+          isNoSite: true,
+          speed_mobile: null,
+          score: 10,
+          priority: 'HOT_LEAD',
+          reason: 'Aucune présence web — opportunité de créer un site',
+          issues: ['Aucun site web', 'Invisible sur Google', 'Pas de présence en ligne']
         });
-        const siteData = await siteResp.json();
-        website = siteData.website;
-        isAmateur = siteData.isAmateur || false;
-        platformName = siteData.platformName || null;
-        if (!website) addLog(`  → 🚫 Pas de site`, '#f87171');
-        else if (isAmateur) addLog(`  → 😬 Amateur: ${platformName}`, '#ff6b6b');
-        else addLog(`  → 🌐 ${website}`, '#60a5fa');
-      } catch(e) {}
-
-      // PageSpeed
-      let speed_mobile = null;
-      if (website && !isAmateur && GOOGLE_KEY) {
-        try {
-          const speedResp = await fetch(PROXY + `/api/pagespeed?apiKey=${GOOGLE_KEY}&url=${website}`);
-          const speedData = await speedResp.json();
-          speed_mobile = Math.round((speedData.lighthouseResult?.categories?.performance?.score || 0) * 100);
-          addLog(`  → ⚡ ${speed_mobile}%`, speed_mobile < 50 ? '#fbbf24' : '#4ade80');
-        } catch(e) {}
       }
-
-      // Score
-      let score = 4;
-      const issues = [];
-      if (!website) { score = 10; issues.push('Aucun site web'); }
-      else if (isAmateur) { score = 9; issues.push(`Site amateur (${platformName})`); issues.push('Image non professionnelle'); }
-      else if (speed_mobile !== null && speed_mobile < 30) { score = 8; issues.push('Site très lent'); }
-      else if (speed_mobile !== null && speed_mobile < 50) { score = 7; issues.push('Site lent'); }
-      else if (speed_mobile !== null && speed_mobile < 70) { score = 6; issues.push('Performances moyennes'); }
-
-      const priority = score >= 9 ? 'HOT_LEAD' : score >= 6 ? 'GOOD_LEAD' : 'LOW_PRIORITY';
-      const reason = !website ? 'Aucune présence web — créer un site'
-        : isAmateur ? `Site amateur ${platformName} — refonte urgente`
-        : speed_mobile < 50 ? `Site lent (${speed_mobile}%) — perd des clients`
-        : 'Optimisation SEO possible';
-
-      prospects.push({ nom, ville, cp, adresse, siren, ape, website, isAmateur, platformName, speed_mobile, issues, score, priority, reason });
     }
 
     allProspects = prospects.sort((a, b) => b.score - a.score);
-    setP(100, `✓ ${allProspects.length} nouveaux prospects !`);
-    addLog(`🔥 ${allProspects.filter(p=>p.priority==='HOT_LEAD').length} HOT · 😬 ${allProspects.filter(p=>p.isAmateur).length} amateurs`, '#fb923c');
+    setP(100, `✓ ${allProspects.length} prospects prêts !`);
+    addLog(`🔥 ${allProspects.filter(p=>p.isAmateur).length} sites amateurs · 🚫 ${allProspects.filter(p=>p.isNoSite).length} sans site`, '#fb923c');
 
     render();
-    // Rafraîchit les secteurs suggérés pour la prochaine recherche
     initSecteurs();
 
   } catch (e) {
@@ -513,10 +494,9 @@ async function lancer() {
 }
 
 function getFiltered() {
-  if (currentFilter === 'hot') return allProspects.filter(p => p.priority === 'HOT_LEAD');
-  if (currentFilter === 'good') return allProspects.filter(p => p.priority === 'GOOD_LEAD');
   if (currentFilter === 'amateur') return allProspects.filter(p => p.isAmateur);
-  if (currentFilter === 'nosite') return allProspects.filter(p => !p.website);
+  if (currentFilter === 'nosite') return allProspects.filter(p => p.isNoSite);
+  if (currentFilter === 'hot') return allProspects.filter(p => p.priority === 'HOT_LEAD');
   return allProspects;
 }
 
@@ -530,10 +510,9 @@ function setFilter(f, el) {
 function render() {
   document.getElementById('statsEl').style.display = 'grid';
   document.getElementById('sTot').textContent = allProspects.length;
-  document.getElementById('sHot').textContent = allProspects.filter(p=>p.priority==='HOT_LEAD').length;
-  document.getElementById('sGood').textContent = allProspects.filter(p=>p.priority==='GOOD_LEAD').length;
   document.getElementById('sAmateur').textContent = allProspects.filter(p=>p.isAmateur).length;
-  document.getElementById('sNoSite').textContent = allProspects.filter(p=>!p.website).length;
+  document.getElementById('sNoSite').textContent = allProspects.filter(p=>p.isNoSite).length;
+  document.getElementById('sHot').textContent = allProspects.filter(p=>p.priority==='HOT_LEAD').length;
   document.getElementById('xbar').classList.add('on');
   document.getElementById('xbarCount').textContent = allProspects.length;
   document.getElementById('filterBar').style.display = 'flex';
@@ -548,21 +527,8 @@ function render() {
   }
 
   filtered.forEach((p, idx) => {
-    const prioClass = p.isAmateur ? 'p-amateur' : p.priority==='HOT_LEAD' ? 'p-hot' : p.priority==='GOOD_LEAD' ? 'p-good' : 'p-low';
-    const prioLabel = p.isAmateur ? '😬 AMATEUR' : p.priority==='HOT_LEAD' ? '🔥 HOT LEAD' : p.priority==='GOOD_LEAD' ? '⚡ GOOD LEAD' : '❄ LOW';
     const sc = scoreColor(p.score);
-    const siteTagClass = !p.website ? 't-nosite' : p.isAmateur ? 't-amateur' : 't-green';
-    const siteTagText = !p.website ? '🚫 Pas de site' : p.isAmateur ? `😬 ${p.platformName}` : `🌐 ${p.website}`;
     const issuesTags = (p.issues||[]).map(i=>`<span class="tag t-red">⚠ ${i}</span>`).join('');
-
-    const metricHTML = [
-      {l:'PageSpeed',v:p.speed_mobile!=null?p.speed_mobile+'/100':p.isAmateur?'Amateur':'—',c:p.isAmateur?'#ff6b6b':speedColor(p.speed_mobile)},
-      {l:'Type site',v:!p.website?'Aucun':p.isAmateur?'😬 Amateur':'✅ Pro',c:!p.website?'#ef4444':p.isAmateur?'#ff6b6b':'#22c55e'},
-      {l:'Plateforme',v:p.platformName||(!p.website?'—':'Pro'),c:p.platformName?'#ff6b6b':'#6b7280'},
-      {l:'SIREN',v:p.siren||'—',c:'#4ade80'},
-      {l:'Code APE',v:p.ape||'—',c:'#60a5fa'},
-      {l:'Ville',v:p.ville+(p.cp?' '+p.cp:''),c:'#7b9aff'},
-    ].map(m=>`<div class="metric"><div class="metric-l">${m.l}</div><div class="metric-v" style="color:${m.c}">${m.v}</div></div>`).join('');
 
     const card = document.createElement('div');
     card.className = 'pc';
@@ -570,11 +536,17 @@ function render() {
     card.innerHTML = `
       <div class="pc-head" onclick="toggleCard(${idx})">
         <div style="flex:1;min-width:0">
-          <div class="pc-name">${p.nom} <span class="prio ${prioClass}">${prioLabel}</span></div>
+          <div class="pc-name">
+            ${p.nom}
+            <span class="prio ${p.isAmateur?'p-hot':'p-nosite'}">${p.isAmateur?'😬 AMATEUR':'🚫 SANS SITE'}</span>
+          </div>
           <div class="tags">
-            <span class="tag ${siteTagClass}">${siteTagText}</span>
-            ${p.speed_mobile!=null?`<span class="tag ${p.speed_mobile<50?'t-ora':'t-green'}">📱 ${p.speed_mobile}%</span>`:''}
-            <span class="tag t-acc">📍 ${p.ville}${p.cp?' '+p.cp:''}</span>
+            ${p.isAmateur
+              ? `<span class="tag t-amateur">🌐 ${p.website}</span><span class="tag t-red">📱 ${p.platformName}</span>`
+              : `<span class="tag t-nosite">🚫 Pas de site web</span>`
+            }
+            ${p.speed_mobile!=null?`<span class="tag ${p.speed_mobile<50?'t-ora':'t-green'}">⚡ ${p.speed_mobile}%</span>`:''}
+            <span class="tag t-acc">📍 ${p.ville}</span>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
@@ -586,21 +558,17 @@ function render() {
         </div>
       </div>
       <div class="pc-det" id="det-${idx}">
-        ${p.isAmateur?`<div class="amateur-box">😬 <b>Site amateur !</b> Hébergé sur <b>${p.platformName}</b> — image non pro, pas de SEO, pas de domaine propre.</div>`:''}
-        <div class="reason-box">💡 <b>Pourquoi prospecter :</b> ${p.reason}</div>
-        ${issuesTags?`<div style="margin-bottom:14px"><div style="font-size:10px;font-family:var(--mono);color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">⚠ Problèmes</div><div class="tags">${issuesTags}</div></div>`:''}
-        <div class="metrics">${metricHTML}</div>
-        <div style="background:var(--bg2);border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--bord);font-size:13px;color:var(--txt2);line-height:2">
-          ${p.adresse?`📬 ${p.adresse}<br>`:''}
-          🏢 SIREN : <span style="color:var(--txt);font-family:var(--mono)">${p.siren||'—'}</span>
-          ${p.ape?`<br>🏭 APE : <span style="color:var(--txt)">${p.ape}</span>`:''}
-        </div>
+        ${p.isAmateur?`<div class="amateur-box">😬 <b>Site amateur détecté sur ${p.platformName} !</b><br>Pas de domaine propre · Pas de SEO · Design non professionnel · Publicités ${p.platformName} visibles</div>`:''}
+        <div class="reason-box">💡 ${p.reason}</div>
+        ${issuesTags?`<div style="margin-bottom:14px"><div class="tags">${issuesTags}</div></div>`:''}
+        ${p.snippet?`<div style="background:var(--bg2);border-radius:8px;padding:10px;margin-bottom:14px;font-size:12px;color:var(--txt2);border:1px solid var(--bord)">"${p.snippet}"</div>`:''}
         <div class="vlinks">
+          ${p.isAmateur?`<a href="${p.url}" target="_blank" class="vlink vl-site">🌐 Voir le site</a>`:''}
+          ${p.siren?`<a href="https://annuaire-entreprises.data.gouv.fr/entreprise/${p.siren}" target="_blank" class="vlink vl-g">📄 Fiche officielle</a>`:''}
           <a href="https://www.google.com/search?q=${encodeURIComponent(p.nom+' '+p.ville)}" target="_blank" class="vlink vl-g">🔍 Google</a>
-          <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/${p.siren}" target="_blank" class="vlink vl-site">📄 Fiche officielle</a>
-          ${p.website?`<a href="https://${p.website}" target="_blank" class="vlink vl-site">🌐 Voir site</a>`:''}
-          <button class="vlink vl-mail" onclick="openEmail(${idx})">✉ Email</button>
+          <button class="vlink vl-mail" onclick="openEmail(${idx})">✉ Email type</button>
         </div>
+        ${p.adresse?`<div style="font-size:12px;color:var(--txt2);margin-top:10px">📬 ${p.adresse} · SIREN: ${p.siren||'—'}</div>`:''}
       </div>
     `;
     list.appendChild(card);
@@ -615,11 +583,8 @@ function toggleCard(idx) {
 }
 
 function genEmail(p) {
-  const salut = 'Bonjour,';
-  if (!p.website) return `Objet : Création de site internet pour ${p.nom}\n\n${salut}\n\nJe me permets de vous contacter car ${p.nom} ne dispose pas encore de site web.\n\nAujourd'hui, 80% des clients cherchent un prestataire en ligne avant tout contact. Sans site web, vous passez à côté de nombreux clients à ${p.ville}.\n\nJe propose une création de site clé en main :\n• Design moderne et professionnel\n• Optimisé pour Google (SEO local)\n• 100% mobile friendly\n• Livraison en 7 jours\n\nSeriez-vous disponible pour un appel de 15 min ?\n\nCordialement`;
-  if (p.isAmateur) return `Objet : Votre site ${p.platformName} nuit à votre image\n\n${salut}\n\nJ'ai consulté votre site web et j'ai remarqué qu'il est hébergé sur ${p.platformName}.\n\nCe type de site donne une image peu professionnelle :\n• Pas de nom de domaine personnalisé\n• Design limité et reconnaissable comme amateur\n• Très mal référencé sur Google\n• Publicités ${p.platformName} visibles\n\nUn vrai site professionnel vous apporterait plus de crédibilité et plus de clients à ${p.ville}.\n\nJe vous propose un audit gratuit ?\n\nCordialement`;
-  if (p.speed_mobile && p.speed_mobile < 50) return `Objet : Votre site perd des clients à cause de sa lenteur\n\n${salut}\n\nJ'ai analysé votre site ${p.website} : score mobile de ${p.speed_mobile}/100.\n\n53% des visiteurs quittent un site lent. Google pénalise aussi les sites lents.\n\nProblèmes détectés :\n${(p.issues||[]).map(i=>'• '+i).join('\n')}\n\nJe peux optimiser votre site rapidement.\n\nUn audit gratuit vous intéresse ?\n\nCordialement`;
-  return `Objet : Améliorer votre visibilité à ${p.ville}\n\n${salut}\n\nJ'ai analysé la présence web de ${p.nom} et identifié des opportunités d'amélioration SEO.\n\nQuelques optimisations pourraient augmenter votre visibilité sur Google à ${p.ville}.\n\nJe vous propose un audit gratuit de 20 min ?\n\nCordialement`;
+  if (p.isAmateur) return `Objet : Votre site ${p.platformName} nuit à votre image professionnelle\n\nBonjour,\n\nJe me permets de vous contacter suite à la consultation de votre site web sur ${p.platformName}.\n\nBien que votre présence en ligne soit un bon début, ce type de site présente des limitations importantes :\n❌ Pas de nom de domaine personnalisé (ex: votreentreprise.fr)\n❌ Design limité et identifiable comme amateur\n❌ Pratiquement invisible sur Google\n❌ Publicités ${p.platformName} affichées sur votre site\n❌ Pas de formulaire de contact professionnel\n\nUn vrai site professionnel vous permettrait de :\n✅ Inspirer confiance à vos clients\n✅ Apparaître en première page Google\n✅ Générer plus de demandes de devis\n\nJe vous propose un audit gratuit de votre présence en ligne.\n\nCordialement`;
+  return `Objet : Création de site internet pour ${p.nom}\n\nBonjour,\n\nJe me permets de vous contacter car ${p.nom} ne dispose pas encore de site web.\n\nAujourd'hui, 80% des clients recherchent un prestataire en ligne avant tout contact. Sans site web, vous êtes invisible sur Google et vous passez à côté de nombreux clients à ${p.ville}.\n\nJe propose une création de site clé en main :\n✅ Design moderne et professionnel\n✅ Optimisé pour Google (SEO local ${p.ville})\n✅ 100% adapté mobile\n✅ Livraison en 7 jours\n✅ Domaine .fr inclus\n\nSeriez-vous disponible pour un appel de 15 min cette semaine ?\n\nCordialement`;
 }
 
 function openEmail(idx) {
@@ -636,14 +601,18 @@ function copyEmail() {
 }
 
 function exportCSV() {
-  const rows=[['Priorité','Score','Amateur','Plateforme','Entreprise','Ville','CP','Adresse','SIREN','APE','Site','PageSpeed','Problèmes','Raison']];
-  allProspects.forEach(p=>rows.push([p.priority,p.score,p.isAmateur?'OUI':'NON',p.platformName||'',p.nom,p.ville,p.cp,p.adresse,p.siren,p.ape,p.website||'',p.speed_mobile??'',(p.issues||[]).join('; '),p.reason||'']));
+  const rows=[['Type','Score','Plateforme','Entreprise','Ville','Site','PageSpeed','Problèmes','Raison','URL']];
+  allProspects.forEach(p=>rows.push([
+    p.isAmateur?'AMATEUR':'SANS SITE',
+    p.score,p.platformName||'',p.nom,p.ville,p.website||'',
+    p.speed_mobile??'',(p.issues||[]).join('; '),p.reason||'',p.url||''
+  ]));
   const csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
   dl(new Blob(['\ufeff'+csv],{type:'text/csv'}),`prospects_${document.getElementById('inpQ').value}_${Date.now()}.csv`);
   showToast('⬇ CSV exporté !');
 }
 function exportEmails() {
-  const txt=allProspects.map(p=>`${'='.repeat(50)}\n${p.nom} — ${p.ville} [${p.priority}${p.isAmateur?' · AMATEUR':''}]\n${'='.repeat(50)}\n${genEmail(p)}\n`).join('\n');
+  const txt=allProspects.map(p=>`${'='.repeat(60)}\n${p.nom} — ${p.ville} [${p.isAmateur?'AMATEUR · '+p.platformName:'SANS SITE'}]\n${'='.repeat(60)}\n${genEmail(p)}\n`).join('\n');
   dl(new Blob([txt],{type:'text/plain'}),'emails_prospection.txt');
   showToast('✉ Emails exportés !');
 }
