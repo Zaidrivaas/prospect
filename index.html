@@ -32,7 +32,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .sec-title::after{content:'';flex:1;height:1px;background:var(--bord)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-@media(max-width:600px){.row2,.row3{grid-template-columns:1fr}}
+.row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.row2,.row3,.row4{grid-template-columns:1fr 1fr}}
+@media(max-width:450px){.row2,.row3,.row4{grid-template-columns:1fr}}
 .field{display:flex;flex-direction:column;gap:5px}
 .field label{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--txt2);text-transform:uppercase;letter-spacing:.5px}
 input,select{font-family:var(--body);font-size:14px;background:var(--bg2);border:1px solid var(--bord2);border-radius:9px;padding:11px 14px;outline:none;width:100%;color:var(--txt);transition:.2s}
@@ -56,11 +58,11 @@ select option{background:var(--bg2)}
 .prog-bar{height:100%;background:linear-gradient(90deg,var(--acc),#a24fff);width:0%;transition:width .35s ease;box-shadow:0 0 10px var(--glow)}
 .logbox{background:#04040e;color:#4ade80;border-radius:9px;padding:12px 14px;font-family:var(--mono);font-size:11px;max-height:160px;overflow-y:auto;border:1px solid var(--bord);line-height:1.9}
 .logbox::-webkit-scrollbar{width:3px}.logbox::-webkit-scrollbar-thumb{background:var(--bord2);border-radius:2px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
-@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:var(--surf);border:1px solid var(--bord);border-radius:12px;padding:16px;text-align:center}
-.stat-n{font-family:var(--head);font-size:30px;font-weight:800;line-height:1}
-.stat-l{font-size:10px;color:var(--txt3);font-family:var(--mono);letter-spacing:.7px;text-transform:uppercase;margin-top:5px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:12px}
+@media(max-width:600px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--surf);border:1px solid var(--bord);border-radius:12px;padding:14px;text-align:center}
+.stat-n{font-family:var(--head);font-size:26px;font-weight:800;line-height:1}
+.stat-l{font-size:9px;color:var(--txt3);font-family:var(--mono);letter-spacing:.5px;text-transform:uppercase;margin-top:4px}
 .xbar{display:none;background:var(--surf);border:1px solid var(--bord);border-radius:12px;padding:13px 18px;margin-bottom:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .xbar.on{display:flex}
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
@@ -75,48 +77,51 @@ select option{background:var(--bg2)}
 .p-hot{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
 .p-good{background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3)}
 .p-low{background:rgba(99,102,241,.15);color:#818cf8;border:1px solid rgba(99,102,241,.3)}
+.p-amateur{background:rgba(239,68,68,.2);color:#ff6b6b;border:1px solid rgba(239,68,68,.4)}
 .tags{display:flex;flex-wrap:wrap;gap:5px}
 .tag{font-size:10px;font-family:var(--mono);padding:3px 9px;border-radius:20px;font-weight:500}
 .t-red{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.18)}
 .t-green{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.18)}
-.t-blue{background:rgba(59,130,246,.1);color:#60a5fa;border:1px solid rgba(59,130,246,.18)}
 .t-acc{background:rgba(79,122,255,.1);color:var(--acc2);border:1px solid rgba(79,122,255,.18)}
 .t-ora{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.18)}
 .t-grey{background:rgba(255,255,255,.05);color:var(--txt2);border:1px solid var(--bord)}
+.t-amateur{background:rgba(239,68,68,.15);color:#ff6b6b;border:1px solid rgba(239,68,68,.3)}
+.t-nosite{background:rgba(139,0,0,.2);color:#ff4444;border:1px solid rgba(139,0,0,.3)}
 .score-ring{width:52px;height:52px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--head);font-weight:800;border:2px solid;flex-shrink:0}
 .arrow{color:var(--txt3);font-size:10px;transition:.2s;flex-shrink:0}
 .pc-det{display:none;padding:16px 20px;border-top:1px solid var(--bord)}
 .pc-det.open{display:block}
 .reason-box{background:rgba(79,122,255,.08);border:1px solid rgba(79,122,255,.15);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--acc2)}
+.amateur-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#ff6b6b}
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 @media(max-width:500px){.metrics{grid-template-columns:repeat(2,1fr)}}
 .metric{background:var(--bg2);border-radius:8px;padding:10px 12px;border:1px solid var(--bord)}
 .metric-l{font-size:9px;color:var(--txt3);font-family:var(--mono);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
 .metric-v{font-size:13px;font-weight:700}
-.contact-box{background:var(--bg2);border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--bord)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
 .vlinks{display:flex;flex-wrap:wrap;gap:8px}
 .vlink{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:5px;text-decoration:none;font-family:var(--body);transition:.15s}
 .vl-g{background:rgba(66,133,244,.15);color:#60a5fa;border:1px solid rgba(66,133,244,.22)}
 .vl-site{background:rgba(79,122,255,.15);color:var(--acc2);border:1px solid rgba(79,122,255,.25)}
 .vl-mail{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
-.vl-li{background:rgba(10,102,194,.15);color:#60a5fa;border:1px solid rgba(10,102,194,.22)}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
 .overlay.open{display:flex}
 .modal{background:var(--surf2);border:1px solid var(--bord2);padding:26px;border-radius:16px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
 .modal h2{font-family:var(--head);font-size:19px;font-weight:800;margin-bottom:5px}
 .modal-sub{font-size:11px;color:var(--txt3);font-family:var(--mono);margin-bottom:16px}
-.email-pre{background:var(--bg);border:1px solid var(--bord);border-radius:9px;padding:14px;font-size:13px;color:var(--txt2);white-space:pre-wrap;margin-bottom:16px;max-height:240px;overflow-y:auto;line-height:1.8;font-family:var(--body)}
+.email-pre{background:var(--bg);border:1px solid var(--bord);border-radius:9px;padding:14px;font-size:13px;color:var(--txt2);white-space:pre-wrap;margin-bottom:16px;max-height:260px;overflow-y:auto;line-height:1.8;font-family:var(--body)}
 .modal-btns{display:flex;gap:9px}
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--surf2);color:var(--txt);padding:10px 22px;border-radius:22px;border:1px solid var(--bord2);font-size:13px;font-weight:600;opacity:0;transition:.3s;pointer-events:none;z-index:200}
 .toast.on{opacity:1}
-.empty{text-align:center;padding:70px 20px;color:var(--txt3)}
+.empty{text-align:center;padding:60px 20px;color:var(--txt3)}
 .empty-ico{font-size:50px;margin-bottom:18px;opacity:.35}
 .empty-t{font-family:var(--head);font-size:20px;color:var(--txt2);margin-bottom:9px}
 .btn-sm{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:var(--body);display:inline-flex;align-items:center;gap:5px}
 .btn-csv{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
 .btn-emails{background:rgba(79,122,255,.12);color:var(--acc2);border:1px solid rgba(79,122,255,.2)}
-.source-badge{font-size:9px;font-family:var(--mono);padding:2px 7px;border-radius:3px;background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
+/* Secteurs suggérés */
+.secteurs-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.secteur-btn{padding:5px 12px;border-radius:20px;font-size:11px;background:rgba(79,122,255,.1);color:var(--acc2);border:1px solid rgba(79,122,255,.2);cursor:pointer;font-family:var(--body);transition:.15s}
+.secteur-btn:hover{background:rgba(79,122,255,.25)}
 </style>
 </head>
 <body>
@@ -126,11 +131,11 @@ select option{background:var(--bg2)}
       <div class="logo-sq">PX</div>
       <div>
         <div class="logo-name">Prospect<b>X</b> Pro</div>
-        <div class="logo-sub">API Gouv · Apollo · PageSpeed · Groq IA</div>
+        <div class="logo-sub">API Gouv · Google Search · PageSpeed · Groq IA</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <div class="badge">Données 100% Réelles</div>
+      <div class="badge">100% Réel</div>
       <div class="dot"></div>
     </div>
   </div>
@@ -138,13 +143,26 @@ select option{background:var(--bg2)}
   <!-- CLÉS API -->
   <div class="card">
     <div class="sec-title">🔑 Clés API</div>
-    <div class="row3">
+    <div class="row2">
       <div class="field">
-        <label>Clé Groq (Gratuit)</label>
+        <label>Clé Groq (obligatoire)</label>
         <div class="pw-wrap">
           <input type="password" id="groqKey" placeholder="gsk_..." oninput="saveKeys()">
           <button class="pw-toggle" onclick="togglePw('groqKey')">👁</button>
         </div>
+      </div>
+      <div class="field">
+        <label>Clé Google API (obligatoire)</label>
+        <div class="pw-wrap">
+          <input type="password" id="googleKey" placeholder="AIza..." oninput="saveKeys()">
+          <button class="pw-toggle" onclick="togglePw('googleKey')">👁</button>
+        </div>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Google Search Engine ID (obligatoire)</label>
+        <input type="text" id="searchEngineId" placeholder="Ex: 02486e05f4789412f" oninput="saveKeys()">
       </div>
       <div class="field">
         <label>Clé Apollo.io (optionnel)</label>
@@ -153,15 +171,8 @@ select option{background:var(--bg2)}
           <button class="pw-toggle" onclick="togglePw('apolloKey')">👁</button>
         </div>
       </div>
-      <div class="field">
-        <label>Clé Google PageSpeed (optionnel)</label>
-        <div class="pw-wrap">
-          <input type="password" id="googleKey" placeholder="Votre clé Google..." oninput="saveKeys()">
-          <button class="pw-toggle" onclick="togglePw('googleKey')">👁</button>
-        </div>
-      </div>
     </div>
-    <div id="keyStatus" class="key-status">⚠ Entrez votre clé Groq pour commencer</div>
+    <div id="keyStatus" class="key-status">⚠ Entrez vos clés pour commencer</div>
   </div>
 
   <!-- RECHERCHE -->
@@ -171,24 +182,27 @@ select option{background:var(--bg2)}
       <div class="field">
         <label>Secteur / Métier cible</label>
         <input type="text" id="inpQ" placeholder="Ex: Plombier, Restaurant, Coiffeur...">
+        <div class="secteurs-grid" id="secteursGrid"></div>
       </div>
       <div class="field">
         <label>Ville / Code Postal</label>
         <input type="text" id="inpV" placeholder="Ex: Lyon, Paris, 69000...">
       </div>
     </div>
-    <div class="row3">
+    <div class="row2">
       <div class="field">
         <label>Nombre de prospects</label>
         <select id="selNb">
           <option value="5">5 prospects</option>
-          <option value="8" selected>8 prospects</option>
-          <option value="10">10 prospects</option>
+          <option value="10" selected>10 prospects</option>
+          <option value="15">15 prospects</option>
+          <option value="20">20 prospects</option>
+          <option value="25">25 prospects</option>
         </select>
       </div>
-      <div class="field" style="grid-column:span 2;justify-content:flex-end">
+      <div class="field" style="justify-content:flex-end">
         <label>&nbsp;</label>
-        <button class="btn btn-p" id="btnLancer" onclick="lancer()">🤖 Lancer l'agent de prospection</button>
+        <button class="btn btn-p" id="btnLancer" onclick="lancer()">🤖 Nouvelle recherche</button>
       </div>
     </div>
   </div>
@@ -205,18 +219,19 @@ select option{background:var(--bg2)}
 
   <!-- STATS -->
   <div class="stats" id="statsEl" style="display:none">
-    <div class="stat"><div class="stat-n" id="sTot" style="color:var(--acc)">0</div><div class="stat-l">Analysés</div></div>
-    <div class="stat"><div class="stat-n" id="sHot" style="color:#ef4444">0</div><div class="stat-l">🔥 HOT LEADS</div></div>
-    <div class="stat"><div class="stat-n" id="sGood" style="color:#f59e0b">0</div><div class="stat-l">⚡ GOOD LEADS</div></div>
-    <div class="stat"><div class="stat-n" id="sNoSite" style="color:#a78bfa">0</div><div class="stat-l">Sans site</div></div>
+    <div class="stat"><div class="stat-n" id="sTot" style="color:var(--acc)">0</div><div class="stat-l">Total</div></div>
+    <div class="stat"><div class="stat-n" id="sHot" style="color:#ef4444">0</div><div class="stat-l">🔥 HOT</div></div>
+    <div class="stat"><div class="stat-n" id="sGood" style="color:#f59e0b">0</div><div class="stat-l">⚡ GOOD</div></div>
+    <div class="stat"><div class="stat-n" id="sAmateur" style="color:#ff6b6b">0</div><div class="stat-l">😬 Amateur</div></div>
+    <div class="stat"><div class="stat-n" id="sNoSite" style="color:#a78bfa">0</div><div class="stat-l">🚫 Sans site</div></div>
   </div>
 
   <!-- EXPORT -->
   <div class="xbar" id="xbar">
-    <div style="font-size:13px;color:var(--txt2)"><b id="xbarCount" style="color:var(--txt)">0</b> prospects qualifiés</div>
+    <div style="font-size:13px;color:var(--txt2)"><b id="xbarCount" style="color:var(--txt)">0</b> prospects</div>
     <div style="display:flex;gap:8px">
-      <button class="btn-sm btn-csv" onclick="exportCSV()">⬇ Export CSV</button>
-      <button class="btn-sm btn-emails" onclick="exportEmails()">✉ Tous les emails</button>
+      <button class="btn-sm btn-csv" onclick="exportCSV()">⬇ CSV</button>
+      <button class="btn-sm btn-emails" onclick="exportEmails()">✉ Emails</button>
     </div>
   </div>
 
@@ -225,19 +240,20 @@ select option{background:var(--bg2)}
     <button class="filt active" onclick="setFilter('all',this)">Tous</button>
     <button class="filt" onclick="setFilter('hot',this)">🔥 HOT LEADS</button>
     <button class="filt" onclick="setFilter('good',this)">⚡ GOOD LEADS</button>
+    <button class="filt" onclick="setFilter('amateur',this)">😬 Site amateur</button>
     <button class="filt" onclick="setFilter('nosite',this)">🚫 Sans site</button>
   </div>
 
-  <!-- RESULTS -->
   <div id="cardsList">
     <div class="empty" id="emptyState">
       <div class="empty-ico">🤖</div>
       <div class="empty-t">Agent de prospection prêt</div>
-      <div style="font-size:13px;margin-top:8px">
-        🏛 Vraies entreprises françaises (API Gouv)<br>
-        🌐 Sites web réels (Apollo)<br>
-        ⚡ Performance réelle (Google PageSpeed)<br>
-        🧠 Qualification IA (Groq)
+      <div style="font-size:13px;margin-top:10px;line-height:2">
+        🏛 Vraies entreprises (API Gouv.fr)<br>
+        🔍 Détection site via Google Search<br>
+        😬 Sites Wix/WordPress/Jimdo détectés<br>
+        ⚡ Score PageSpeed réel<br>
+        🔄 Nouveaux résultats à chaque recherche
       </div>
     </div>
   </div>
@@ -250,7 +266,7 @@ select option{background:var(--bg2)}
     <div class="modal-sub" id="emailSub">—</div>
     <div class="email-pre" id="emailContent"></div>
     <div class="modal-btns">
-      <button class="btn btn-p" style="flex:1;padding:11px" onclick="copyEmail()">Copier le message</button>
+      <button class="btn btn-p" style="flex:1;padding:11px" onclick="copyEmail()">Copier</button>
       <button class="btn btn-o" style="width:auto;padding:11px 18px" onclick="closeEmail()">Fermer</button>
     </div>
   </div>
@@ -259,17 +275,68 @@ select option{background:var(--bg2)}
 
 <script>
 const PROXY = '';
+const AMATEUR_PLATFORMS = ['wordpress.com','wixsite.com','wix.com','jimdo.com','jimdosite.com','webnode.fr','webnode.com','site123.me','weebly.com','squarespace.com','blogger.com','blogspot.com','free.fr','e-monsite.com','sitew.com','kazeo.com','over-blog.com'];
+
+// TOUS LES SECTEURS POSSIBLES
+const TOUS_SECTEURS = [
+  // Artisanat & BTP
+  'Plombier','Électricien','Menuisier','Charpentier','Maçon','Carreleur','Peintre en bâtiment',
+  'Couvreur','Plaquiste','Chauffagiste','Climatisation','Serrurier','Vitrier','Jardinier',
+  'Paysagiste','Pisciniste','Architecte','Géomètre','Ascensoriste',
+  // Beauté & Bien-être
+  'Coiffeur','Barbier','Esthéticienne','Institut de beauté','Onglerie','Tatoueur','Spa',
+  'Massage','Ostéopathe','Kinésithérapeute','Podologue','Orthophoniste','Psychologue',
+  // Restauration & Alimentation
+  'Restaurant','Boulangerie','Pâtisserie','Boucherie','Traiteur','Pizzeria','Sushi',
+  'Café','Bar','Épicerie','Fromagerie','Cave à vins','Chocolatier',
+  // Automobile
+  'Garage automobile','Carrosserie','Contrôle technique','Pneumatiques','Lavage auto',
+  'Dépannage auto','Concessionnaire','Location voiture',
+  // Santé
+  'Médecin','Dentiste','Opticien','Pharmacie','Infirmier','Vétérinaire',
+  'Laboratoire analyse','Radiologie','Cabinet médical',
+  // Commerce & Services
+  'Fleuriste','Librairie','Bijouterie','Horlogerie','Pressing','Cordonnerie',
+  'Déménagement','Nettoyage','Pressing industriel','Imprimerie','Photographe',
+  // Éducation & Formation
+  'École de conduite','Cours particuliers','École de musique','Salle de sport',
+  'Yoga','Pilates','Arts martiaux','Centre de formation',
+  // Immobilier & Finance
+  'Agence immobilière','Notaire','Expert-comptable','Avocat','Assurance','Banque',
+  // Tech & Digital
+  'Informatique','Réparation téléphone','Développeur web','Agence communication',
+  'Imprimerie numérique','Sécurité informatique',
+  // Hôtellerie
+  'Hôtel','Chambre hôtes','Location saisonnière','Camping','Résidence tourisme'
+];
+
 let allProspects = [];
 let currentFilter = 'all';
+let searchCount = 0;
+
+// Affiche les secteurs suggérés
+function initSecteurs() {
+  const grid = document.getElementById('secteursGrid');
+  // Affiche 12 secteurs aléatoires
+  const shuffled = [...TOUS_SECTEURS].sort(() => Math.random() - 0.5).slice(0, 12);
+  grid.innerHTML = shuffled.map(s =>
+    `<button class="secteur-btn" onclick="setSecteur('${s}')">${s}</button>`
+  ).join('');
+}
+
+function setSecteur(s) {
+  document.getElementById('inpQ').value = s;
+}
 
 window.addEventListener('load', () => {
-  const gk = localStorage.getItem('px_groq');
-  const ak = localStorage.getItem('px_apollo');
-  const ggk = localStorage.getItem('px_google');
-  if (gk) document.getElementById('groqKey').value = gk;
-  if (ak) document.getElementById('apolloKey').value = ak;
-  if (ggk) document.getElementById('googleKey').value = ggk;
+  const vals = ['groqKey','googleKey','searchEngineId','apolloKey'];
+  const keys = ['px_groq','px_google','px_cx','px_apollo'];
+  vals.forEach((id, i) => {
+    const v = localStorage.getItem(keys[i]);
+    if (v) document.getElementById(id).value = v;
+  });
   saveKeys();
+  initSecteurs();
 });
 
 function togglePw(id) {
@@ -279,32 +346,24 @@ function togglePw(id) {
 
 function saveKeys() {
   const gk = document.getElementById('groqKey').value.trim();
-  const ak = document.getElementById('apolloKey').value.trim();
   const ggk = document.getElementById('googleKey').value.trim();
+  const cx = document.getElementById('searchEngineId').value.trim();
+  const ak = document.getElementById('apolloKey').value.trim();
   if (gk) localStorage.setItem('px_groq', gk);
-  if (ak) localStorage.setItem('px_apollo', ak);
   if (ggk) localStorage.setItem('px_google', ggk);
+  if (cx) localStorage.setItem('px_cx', cx);
+  if (ak) localStorage.setItem('px_apollo', ak);
   const status = document.getElementById('keyStatus');
-  if (!gk) {
-    status.style.background = 'rgba(245,158,11,.1)';
-    status.style.color = '#fbbf24';
-    status.style.borderColor = 'rgba(245,158,11,.2)';
-    status.textContent = '⚠ Clé Groq manquante (obligatoire)';
+  const missing = [];
+  if (!gk) missing.push('Groq');
+  if (!ggk) missing.push('Google API');
+  if (!cx) missing.push('Search Engine ID');
+  if (missing.length === 0) {
+    status.style.cssText = 'background:rgba(34,197,94,.1);color:#4ade80;border-color:rgba(34,197,94,.2)';
+    status.textContent = '✅ Clés configurées — Nouveaux résultats à chaque recherche !';
   } else {
-    const extras = [];
-    if (!ak) extras.push('Apollo (contacts)');
-    if (!ggk) extras.push('Google PageSpeed');
-    if (extras.length === 0) {
-      status.style.background = 'rgba(34,197,94,.1)';
-      status.style.color = '#4ade80';
-      status.style.borderColor = 'rgba(34,197,94,.2)';
-      status.textContent = '✅ Toutes les clés configurées — Mode complet !';
-    } else {
-      status.style.background = 'rgba(79,122,255,.1)';
-      status.style.color = '#7b9aff';
-      status.style.borderColor = 'rgba(79,122,255,.2)';
-      status.textContent = `✅ Groq OK · Sans : ${extras.join(', ')} (optionnel)`;
-    }
+    status.style.cssText = 'background:rgba(245,158,11,.1);color:#fbbf24;border-color:rgba(245,158,11,.2)';
+    status.textContent = '⚠ Manquant : ' + missing.join(' · ');
   }
 }
 
@@ -335,12 +394,14 @@ async function lancer() {
   const v = document.getElementById('inpV').value.trim();
   const nb = parseInt(document.getElementById('selNb').value);
   const GROQ_KEY = document.getElementById('groqKey').value.trim();
-  const APOLLO_KEY = document.getElementById('apolloKey').value.trim();
   const GOOGLE_KEY = document.getElementById('googleKey').value.trim();
+  const CX = document.getElementById('searchEngineId').value.trim();
 
-  if (!q) { showToast('⚠ Saisissez un secteur ou métier'); return; }
-  if (!GROQ_KEY) { showToast('⚠ Clé Groq manquante !'); return; }
+  if (!q) { showToast('⚠ Saisissez un secteur'); return; }
+  if (!GROQ_KEY || !GOOGLE_KEY || !CX) { showToast('⚠ Clés API manquantes !'); return; }
 
+  // RESET COMPLET — nouvelle recherche fraîche
+  searchCount++;
   allProspects = [];
   currentFilter = 'all';
   document.getElementById('btnLancer').disabled = true;
@@ -351,13 +412,14 @@ async function lancer() {
   document.getElementById('emptyState').style.display = 'none';
   document.getElementById('cardsList').innerHTML = '';
   document.getElementById('logBox').innerHTML = '';
+  document.querySelectorAll('.filt').forEach(b => b.classList.remove('active'));
+  document.querySelector('.filt').classList.add('active');
 
-  setP(5, 'Recherche des vraies entreprises françaises...');
-  addLog('🏛 Connexion à l\'API officielle data.gouv.fr...');
-  addLog(`🎯 Recherche : ${q}${v ? ' à ' + v : ' en France'}`);
+  setP(5, 'Nouvelle recherche lancée...');
+  addLog(`🔄 Recherche #${searchCount} — Nouveaux prospects...`);
+  addLog(`🎯 ${q}${v ? ' à ' + v : ' en France'} · ${nb} prospects`);
 
   try {
-    // ÉTAPE 1 — API Gouv.fr : vraies entreprises
     const govResp = await fetch(PROXY + '/api/entreprises', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -366,20 +428,19 @@ async function lancer() {
     const govData = await govResp.json();
     const entreprises = govData.results || [];
 
-    if (entreprises.length === 0) {
-      addLog('⚠ Aucune entreprise trouvée — essayez un autre secteur ou ville', '#fbbf24');
+    if (!entreprises.length) {
+      addLog('⚠ Aucune entreprise trouvée', '#fbbf24');
       setP(100, 'Aucun résultat');
       document.getElementById('btnLancer').disabled = false;
       return;
     }
 
-    addLog(`✅ ${entreprises.length} vraies entreprises françaises trouvées !`);
-    setP(20, 'Enrichissement des données...');
+    addLog(`✅ ${entreprises.length} entreprises trouvées (page aléatoire) !`);
 
     const prospects = [];
 
     for (let [i, ent] of entreprises.entries()) {
-      const pct = 20 + Math.round(((i + 1) / entreprises.length) * 65);
+      const pct = 10 + Math.round(((i + 1) / entreprises.length) * 80);
       const nom = ent.nom_complet || ent.nom_raison_sociale || 'Entreprise';
       const ville = ent.siege?.libelle_commune || v || 'France';
       const cp = ent.siege?.code_postal || '';
@@ -388,93 +449,61 @@ async function lancer() {
       const ape = ent.activite_principale || '';
 
       setP(pct, `[${i+1}/${entreprises.length}] ${nom}`);
-      addLog(`[${i+1}/${entreprises.length}] ${nom} — ${ville}`);
+      addLog(`[${i+1}/${entreprises.length}] ${nom}`);
 
-      // ÉTAPE 2 — Apollo : site web + contact
-      let website = null;
-      let contact_name = null;
-      let contact_role = null;
-      let contact_email = null;
-      let contact_phone = null;
-      let contact_linkedin = null;
+      // Recherche site web
+      let website = null, isAmateur = false, platformName = null;
+      try {
+        const siteResp = await fetch(PROXY + '/api/findsite', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ companyName: nom, city: ville, googleKey: GOOGLE_KEY, searchEngineId: CX })
+        });
+        const siteData = await siteResp.json();
+        website = siteData.website;
+        isAmateur = siteData.isAmateur || false;
+        platformName = siteData.platformName || null;
+        if (!website) addLog(`  → 🚫 Pas de site`, '#f87171');
+        else if (isAmateur) addLog(`  → 😬 Amateur: ${platformName}`, '#ff6b6b');
+        else addLog(`  → 🌐 ${website}`, '#60a5fa');
+      } catch(e) {}
 
-      if (APOLLO_KEY) {
-        try {
-          const apolloResp = await fetch(PROXY + '/api/apollo', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ apiKey: APOLLO_KEY, companyName: nom })
-          });
-          const apolloData = await apolloResp.json();
-          const org = apolloData.organizations?.[0] || apolloData.accounts?.[0];
-          const person = apolloData.people?.[0] || apolloData.contacts?.[0];
-          if (org) {
-            website = org.primary_domain || org.website_url || null;
-            contact_phone = org.sanitized_phone || org.phone || null;
-          }
-          if (person) {
-            contact_name = person.name || null;
-            contact_role = person.title || null;
-            contact_email = person.email || null;
-            contact_linkedin = person.linkedin_url || null;
-          }
-          if (website) addLog(`  → Site: ${website}`, '#60a5fa');
-        } catch(e) {}
-      }
-
-      // ÉTAPE 3 — Google PageSpeed
+      // PageSpeed
       let speed_mobile = null;
-      let speed_desktop = null;
-
-      if (GOOGLE_KEY && website) {
+      if (website && !isAmateur && GOOGLE_KEY) {
         try {
           const speedResp = await fetch(PROXY + `/api/pagespeed?apiKey=${GOOGLE_KEY}&url=${website}`);
           const speedData = await speedResp.json();
           speed_mobile = Math.round((speedData.lighthouseResult?.categories?.performance?.score || 0) * 100);
-          const speedRespD = await fetch(PROXY + `/api/pagespeed?apiKey=${GOOGLE_KEY}&url=${website}&strategy=desktop`);
-          const speedDataD = await speedRespD.json();
-          speed_desktop = Math.round((speedDataD.lighthouseResult?.categories?.performance?.score || 0) * 100);
-          addLog(`  → PageSpeed: 📱${speed_mobile}% 🖥${speed_desktop}%`, speed_mobile < 50 ? '#fbbf24' : '#4ade80');
+          addLog(`  → ⚡ ${speed_mobile}%`, speed_mobile < 50 ? '#fbbf24' : '#4ade80');
         } catch(e) {}
       }
 
-      // Score priorité
-      let score = 5;
-      if (!website) score += 5;
-      else if (speed_mobile !== null && speed_mobile < 30) score += 4;
-      else if (speed_mobile !== null && speed_mobile < 50) score += 3;
-      else if (speed_mobile !== null && speed_mobile < 70) score += 2;
-      else score += 1;
-
-      const priority = score >= 9 ? 'HOT_LEAD' : score >= 7 ? 'GOOD_LEAD' : 'LOW_PRIORITY';
+      // Score
+      let score = 4;
       const issues = [];
-      if (!website) issues.push('Pas de site web');
-      if (speed_mobile !== null && speed_mobile < 30) issues.push('Site très lent (critique)');
-      else if (speed_mobile !== null && speed_mobile < 50) issues.push('Site lent');
-      if (speed_mobile !== null && speed_mobile < 50) issues.push('Mauvais référencement Google');
+      if (!website) { score = 10; issues.push('Aucun site web'); }
+      else if (isAmateur) { score = 9; issues.push(`Site amateur (${platformName})`); issues.push('Image non professionnelle'); }
+      else if (speed_mobile !== null && speed_mobile < 30) { score = 8; issues.push('Site très lent'); }
+      else if (speed_mobile !== null && speed_mobile < 50) { score = 7; issues.push('Site lent'); }
+      else if (speed_mobile !== null && speed_mobile < 70) { score = 6; issues.push('Performances moyennes'); }
 
-      const reason = !website
-        ? 'Aucune présence web — création de site à proposer'
-        : speed_mobile < 50
-          ? `Site lent (${speed_mobile}%) — optimisation urgente`
-          : 'Site existant — optimisation SEO possible';
+      const priority = score >= 9 ? 'HOT_LEAD' : score >= 6 ? 'GOOD_LEAD' : 'LOW_PRIORITY';
+      const reason = !website ? 'Aucune présence web — créer un site'
+        : isAmateur ? `Site amateur ${platformName} — refonte urgente`
+        : speed_mobile < 50 ? `Site lent (${speed_mobile}%) — perd des clients`
+        : 'Optimisation SEO possible';
 
-      prospects.push({
-        nom, ville, cp, adresse, siren, ape,
-        website, speed_mobile, speed_desktop,
-        mobile_friendly: speed_mobile ? speed_mobile > 50 : null,
-        issues, contact_name, contact_role,
-        contact_email, contact_phone, contact_linkedin,
-        score, priority, reason,
-        source: '🏛 API Gouv.fr'
-      });
+      prospects.push({ nom, ville, cp, adresse, siren, ape, website, isAmateur, platformName, speed_mobile, issues, score, priority, reason });
     }
 
     allProspects = prospects.sort((a, b) => b.score - a.score);
-    setP(100, `✓ ${allProspects.length} vrais prospects analysés !`);
-    addLog(`🔥 ${allProspects.filter(p => p.priority === 'HOT_LEAD').length} HOT LEADS !`, '#fb923c');
-    addLog(`✅ Données 100% réelles — API officielle française`, '#4ade80');
+    setP(100, `✓ ${allProspects.length} nouveaux prospects !`);
+    addLog(`🔥 ${allProspects.filter(p=>p.priority==='HOT_LEAD').length} HOT · 😬 ${allProspects.filter(p=>p.isAmateur).length} amateurs`, '#fb923c');
+
     render();
+    // Rafraîchit les secteurs suggérés pour la prochaine recherche
+    initSecteurs();
 
   } catch (e) {
     addLog('❌ Erreur : ' + e.message, '#f87171');
@@ -486,6 +515,7 @@ async function lancer() {
 function getFiltered() {
   if (currentFilter === 'hot') return allProspects.filter(p => p.priority === 'HOT_LEAD');
   if (currentFilter === 'good') return allProspects.filter(p => p.priority === 'GOOD_LEAD');
+  if (currentFilter === 'amateur') return allProspects.filter(p => p.isAmateur);
   if (currentFilter === 'nosite') return allProspects.filter(p => !p.website);
   return allProspects;
 }
@@ -500,9 +530,10 @@ function setFilter(f, el) {
 function render() {
   document.getElementById('statsEl').style.display = 'grid';
   document.getElementById('sTot').textContent = allProspects.length;
-  document.getElementById('sHot').textContent = allProspects.filter(p => p.priority === 'HOT_LEAD').length;
-  document.getElementById('sGood').textContent = allProspects.filter(p => p.priority === 'GOOD_LEAD').length;
-  document.getElementById('sNoSite').textContent = allProspects.filter(p => !p.website).length;
+  document.getElementById('sHot').textContent = allProspects.filter(p=>p.priority==='HOT_LEAD').length;
+  document.getElementById('sGood').textContent = allProspects.filter(p=>p.priority==='GOOD_LEAD').length;
+  document.getElementById('sAmateur').textContent = allProspects.filter(p=>p.isAmateur).length;
+  document.getElementById('sNoSite').textContent = allProspects.filter(p=>!p.website).length;
   document.getElementById('xbar').classList.add('on');
   document.getElementById('xbarCount').textContent = allProspects.length;
   document.getElementById('filterBar').style.display = 'flex';
@@ -517,37 +548,33 @@ function render() {
   }
 
   filtered.forEach((p, idx) => {
-    const prioClass = p.priority === 'HOT_LEAD' ? 'p-hot' : p.priority === 'GOOD_LEAD' ? 'p-good' : 'p-low';
-    const prioLabel = p.priority === 'HOT_LEAD' ? '🔥 HOT LEAD' : p.priority === 'GOOD_LEAD' ? '⚡ GOOD LEAD' : '❄ LOW';
+    const prioClass = p.isAmateur ? 'p-amateur' : p.priority==='HOT_LEAD' ? 'p-hot' : p.priority==='GOOD_LEAD' ? 'p-good' : 'p-low';
+    const prioLabel = p.isAmateur ? '😬 AMATEUR' : p.priority==='HOT_LEAD' ? '🔥 HOT LEAD' : p.priority==='GOOD_LEAD' ? '⚡ GOOD LEAD' : '❄ LOW';
     const sc = scoreColor(p.score);
-    const issuesTags = (p.issues || []).map(i => `<span class="tag t-red">⚠ ${i}</span>`).join('');
+    const siteTagClass = !p.website ? 't-nosite' : p.isAmateur ? 't-amateur' : 't-green';
+    const siteTagText = !p.website ? '🚫 Pas de site' : p.isAmateur ? `😬 ${p.platformName}` : `🌐 ${p.website}`;
+    const issuesTags = (p.issues||[]).map(i=>`<span class="tag t-red">⚠ ${i}</span>`).join('');
 
     const metricHTML = [
-      { l: 'PageSpeed Mobile', v: p.speed_mobile != null ? p.speed_mobile + '/100' : '—', c: speedColor(p.speed_mobile) },
-      { l: 'PageSpeed Desktop', v: p.speed_desktop != null ? p.speed_desktop + '/100' : '—', c: speedColor(p.speed_desktop) },
-      { l: 'Mobile Friendly', v: p.mobile_friendly === null ? '—' : p.mobile_friendly ? '✓ Oui' : '✗ Non', c: p.mobile_friendly ? '#22c55e' : p.mobile_friendly === false ? '#ef4444' : '#6b7280' },
-      { l: 'SIREN', v: p.siren || '—', c: '#4ade80' },
-      { l: 'Code APE', v: p.ape || '—', c: '#60a5fa' },
-      { l: 'Source', v: p.source || '—', c: '#4ade80' },
-    ].map(m => `<div class="metric"><div class="metric-l">${m.l}</div><div class="metric-v" style="color:${m.c}">${m.v}</div></div>`).join('');
+      {l:'PageSpeed',v:p.speed_mobile!=null?p.speed_mobile+'/100':p.isAmateur?'Amateur':'—',c:p.isAmateur?'#ff6b6b':speedColor(p.speed_mobile)},
+      {l:'Type site',v:!p.website?'Aucun':p.isAmateur?'😬 Amateur':'✅ Pro',c:!p.website?'#ef4444':p.isAmateur?'#ff6b6b':'#22c55e'},
+      {l:'Plateforme',v:p.platformName||(!p.website?'—':'Pro'),c:p.platformName?'#ff6b6b':'#6b7280'},
+      {l:'SIREN',v:p.siren||'—',c:'#4ade80'},
+      {l:'Code APE',v:p.ape||'—',c:'#60a5fa'},
+      {l:'Ville',v:p.ville+(p.cp?' '+p.cp:''),c:'#7b9aff'},
+    ].map(m=>`<div class="metric"><div class="metric-l">${m.l}</div><div class="metric-v" style="color:${m.c}">${m.v}</div></div>`).join('');
 
     const card = document.createElement('div');
     card.className = 'pc';
-    card.style.animationDelay = (idx * 0.05) + 's';
+    card.style.animationDelay = (idx*0.04)+'s';
     card.innerHTML = `
       <div class="pc-head" onclick="toggleCard(${idx})">
         <div style="flex:1;min-width:0">
-          <div class="pc-name">
-            ${p.nom}
-            <span class="prio ${prioClass}">${prioLabel}</span>
-            <span class="source-badge">RÉEL ✅</span>
-          </div>
+          <div class="pc-name">${p.nom} <span class="prio ${prioClass}">${prioLabel}</span></div>
           <div class="tags">
-            <span class="tag ${p.website ? 't-green' : 't-red'}">${p.website ? '🌐 ' + p.website : '🚫 Pas de site'}</span>
-            ${p.speed_mobile != null ? `<span class="tag ${p.speed_mobile < 50 ? 't-ora' : 't-green'}">📱 ${p.speed_mobile}%</span>` : ''}
-            ${p.speed_desktop != null ? `<span class="tag ${p.speed_desktop < 50 ? 't-ora' : 't-green'}">🖥 ${p.speed_desktop}%</span>` : ''}
-            <span class="tag t-acc">📍 ${p.ville}${p.cp ? ' ' + p.cp : ''}</span>
-            ${p.contact_phone ? `<span class="tag t-grey">📞 ${p.contact_phone}</span>` : ''}
+            <span class="tag ${siteTagClass}">${siteTagText}</span>
+            ${p.speed_mobile!=null?`<span class="tag ${p.speed_mobile<50?'t-ora':'t-green'}">📱 ${p.speed_mobile}%</span>`:''}
+            <span class="tag t-acc">📍 ${p.ville}${p.cp?' '+p.cp:''}</span>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
@@ -559,24 +586,19 @@ function render() {
         </div>
       </div>
       <div class="pc-det" id="det-${idx}">
+        ${p.isAmateur?`<div class="amateur-box">😬 <b>Site amateur !</b> Hébergé sur <b>${p.platformName}</b> — image non pro, pas de SEO, pas de domaine propre.</div>`:''}
         <div class="reason-box">💡 <b>Pourquoi prospecter :</b> ${p.reason}</div>
-        ${p.issues?.length ? `<div style="margin-bottom:14px"><div style="font-size:10px;font-family:var(--mono);color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">⚠ Problèmes détectés</div><div class="tags">${issuesTags}</div></div>` : ''}
+        ${issuesTags?`<div style="margin-bottom:14px"><div style="font-size:10px;font-family:var(--mono);color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">⚠ Problèmes</div><div class="tags">${issuesTags}</div></div>`:''}
         <div class="metrics">${metricHTML}</div>
-        <div class="contact-box">
-          <div style="font-size:10px;font-family:var(--mono);color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">👤 Contact</div>
-          <div class="contact-grid">
-            <div style="color:var(--txt2)">Nom : <span style="color:var(--txt);font-weight:600">${p.contact_name || '—'}</span></div>
-            <div style="color:var(--txt2)">Rôle : <span style="color:var(--txt)">${p.contact_role || '—'}</span></div>
-            <div style="color:var(--txt2)">📧 <span style="color:var(--acc2)">${p.contact_email || '—'}</span></div>
-            <div style="color:var(--txt2)">📞 <span style="color:#4ade80">${p.contact_phone || '—'}</span></div>
-            ${p.adresse ? `<div style="grid-column:span 2;color:var(--txt2)">📬 <span style="color:var(--txt)">${p.adresse}</span></div>` : ''}
-          </div>
+        <div style="background:var(--bg2);border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--bord);font-size:13px;color:var(--txt2);line-height:2">
+          ${p.adresse?`📬 ${p.adresse}<br>`:''}
+          🏢 SIREN : <span style="color:var(--txt);font-family:var(--mono)">${p.siren||'—'}</span>
+          ${p.ape?`<br>🏭 APE : <span style="color:var(--txt)">${p.ape}</span>`:''}
         </div>
         <div class="vlinks">
-          <a href="https://www.google.com/search?q=${encodeURIComponent(p.nom + ' ' + p.ville)}" target="_blank" class="vlink vl-g">🔍 Google</a>
+          <a href="https://www.google.com/search?q=${encodeURIComponent(p.nom+' '+p.ville)}" target="_blank" class="vlink vl-g">🔍 Google</a>
           <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/${p.siren}" target="_blank" class="vlink vl-site">📄 Fiche officielle</a>
-          ${p.website ? `<a href="https://${p.website}" target="_blank" class="vlink vl-site">🌐 Site</a>` : ''}
-          ${p.contact_linkedin ? `<a href="${p.contact_linkedin}" target="_blank" class="vlink vl-li">💼 LinkedIn</a>` : ''}
+          ${p.website?`<a href="https://${p.website}" target="_blank" class="vlink vl-site">🌐 Voir site</a>`:''}
           <button class="vlink vl-mail" onclick="openEmail(${idx})">✉ Email</button>
         </div>
       </div>
@@ -586,43 +608,42 @@ function render() {
 }
 
 function toggleCard(idx) {
-  const det = document.getElementById('det-' + idx);
-  const arr = document.getElementById('arr-' + idx);
+  const det = document.getElementById('det-'+idx);
+  const arr = document.getElementById('arr-'+idx);
   det.classList.toggle('open');
   arr.style.transform = det.classList.contains('open') ? 'rotate(180deg)' : '';
 }
 
 function genEmail(p) {
-  const prenom = p.contact_name ? p.contact_name.split(' ')[0] : '';
-  const salut = prenom ? `Bonjour ${prenom},` : 'Bonjour,';
-  if (!p.website) return `Objet : Création de site internet pour ${p.nom}\n\n${salut}\n\nJe me permets de vous contacter car ${p.nom} ne dispose pas encore de site web.\n\nAujourd'hui, 80% des clients cherchent un prestataire en ligne avant tout contact. Un site professionnel vous apporterait de nouveaux clients à ${p.ville} chaque semaine.\n\nJe propose une création de site clé en main :\n• Design moderne et mobile\n• Référencement Google inclus\n• Livraison en 7 jours\n\nSeriez-vous disponible pour un appel de 15 min ?\n\nCordialement`;
-  if (p.speed_mobile && p.speed_mobile < 50) return `Objet : Votre site perd des clients chaque jour\n\n${salut}\n\nJ'ai analysé votre site ${p.website} : score PageSpeed mobile de ${p.speed_mobile}/100.\n\n53% des visiteurs quittent un site qui met plus de 3 secondes à charger. Google pénalise aussi les sites lents dans ses résultats.\n\nProblèmes détectés :\n${(p.issues || []).map(i => '• ' + i).join('\n')}\n\nJe peux optimiser votre site rapidement.\n\nUn audit gratuit vous intéresse ?\n\nCordialement`;
-  return `Objet : Améliorer votre visibilité à ${p.ville}\n\n${salut}\n\nJ'ai analysé la présence en ligne de ${p.nom} et identifié des axes d'amélioration.\n\nQuelques optimisations SEO ciblées pourraient augmenter significativement votre visibilité sur Google à ${p.ville}.\n\nJe vous propose un audit gratuit de 20 minutes ?\n\nCordialement`;
+  const salut = 'Bonjour,';
+  if (!p.website) return `Objet : Création de site internet pour ${p.nom}\n\n${salut}\n\nJe me permets de vous contacter car ${p.nom} ne dispose pas encore de site web.\n\nAujourd'hui, 80% des clients cherchent un prestataire en ligne avant tout contact. Sans site web, vous passez à côté de nombreux clients à ${p.ville}.\n\nJe propose une création de site clé en main :\n• Design moderne et professionnel\n• Optimisé pour Google (SEO local)\n• 100% mobile friendly\n• Livraison en 7 jours\n\nSeriez-vous disponible pour un appel de 15 min ?\n\nCordialement`;
+  if (p.isAmateur) return `Objet : Votre site ${p.platformName} nuit à votre image\n\n${salut}\n\nJ'ai consulté votre site web et j'ai remarqué qu'il est hébergé sur ${p.platformName}.\n\nCe type de site donne une image peu professionnelle :\n• Pas de nom de domaine personnalisé\n• Design limité et reconnaissable comme amateur\n• Très mal référencé sur Google\n• Publicités ${p.platformName} visibles\n\nUn vrai site professionnel vous apporterait plus de crédibilité et plus de clients à ${p.ville}.\n\nJe vous propose un audit gratuit ?\n\nCordialement`;
+  if (p.speed_mobile && p.speed_mobile < 50) return `Objet : Votre site perd des clients à cause de sa lenteur\n\n${salut}\n\nJ'ai analysé votre site ${p.website} : score mobile de ${p.speed_mobile}/100.\n\n53% des visiteurs quittent un site lent. Google pénalise aussi les sites lents.\n\nProblèmes détectés :\n${(p.issues||[]).map(i=>'• '+i).join('\n')}\n\nJe peux optimiser votre site rapidement.\n\nUn audit gratuit vous intéresse ?\n\nCordialement`;
+  return `Objet : Améliorer votre visibilité à ${p.ville}\n\n${salut}\n\nJ'ai analysé la présence web de ${p.nom} et identifié des opportunités d'amélioration SEO.\n\nQuelques optimisations pourraient augmenter votre visibilité sur Google à ${p.ville}.\n\nJe vous propose un audit gratuit de 20 min ?\n\nCordialement`;
 }
 
 function openEmail(idx) {
-  const p = getFiltered()[idx] || allProspects[idx];
-  document.getElementById('emailSub').textContent = p.nom + ' · ' + p.ville;
+  const p = getFiltered()[idx]||allProspects[idx];
+  document.getElementById('emailSub').textContent = p.nom+' · '+p.ville;
   document.getElementById('emailContent').textContent = genEmail(p);
   document.getElementById('emailOverlay').classList.add('open');
 }
 function closeEmail() { document.getElementById('emailOverlay').classList.remove('open'); }
-function closeBg(e) { if (e.target === document.getElementById('emailOverlay')) closeEmail(); }
+function closeBg(e) { if(e.target===document.getElementById('emailOverlay')) closeEmail(); }
 function copyEmail() {
   navigator.clipboard.writeText(document.getElementById('emailContent').textContent);
-  showToast('✓ Email copié !');
-  closeEmail();
+  showToast('✓ Email copié !'); closeEmail();
 }
 
 function exportCSV() {
-  const rows = [['Priorité','Score','Entreprise','Ville','CP','Adresse','SIREN','APE','Site','PageSpeed Mobile','PageSpeed Desktop','Mobile Friendly','Problèmes','Contact','Rôle','Email','Téléphone','LinkedIn','Raison']];
-  allProspects.forEach(p => rows.push([p.priority,p.score,p.nom,p.ville,p.cp,p.adresse,p.siren,p.ape,p.website||'',p.speed_mobile??'',p.speed_desktop??'',p.mobile_friendly??'',(p.issues||[]).join('; '),p.contact_name||'',p.contact_role||'',p.contact_email||'',p.contact_phone||'',p.contact_linkedin||'',p.reason||'']));
-  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
-  dl(new Blob(['\ufeff'+csv],{type:'text/csv'}),`prospects_${document.getElementById('inpQ').value}_${new Date().toISOString().slice(0,10)}.csv`);
+  const rows=[['Priorité','Score','Amateur','Plateforme','Entreprise','Ville','CP','Adresse','SIREN','APE','Site','PageSpeed','Problèmes','Raison']];
+  allProspects.forEach(p=>rows.push([p.priority,p.score,p.isAmateur?'OUI':'NON',p.platformName||'',p.nom,p.ville,p.cp,p.adresse,p.siren,p.ape,p.website||'',p.speed_mobile??'',(p.issues||[]).join('; '),p.reason||'']));
+  const csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  dl(new Blob(['\ufeff'+csv],{type:'text/csv'}),`prospects_${document.getElementById('inpQ').value}_${Date.now()}.csv`);
   showToast('⬇ CSV exporté !');
 }
 function exportEmails() {
-  const txt = allProspects.map(p=>`${'='.repeat(50)}\n${p.nom} — ${p.ville} [${p.priority} · Score: ${p.score}/10]\n${'='.repeat(50)}\n${genEmail(p)}\n`).join('\n');
+  const txt=allProspects.map(p=>`${'='.repeat(50)}\n${p.nom} — ${p.ville} [${p.priority}${p.isAmateur?' · AMATEUR':''}]\n${'='.repeat(50)}\n${genEmail(p)}\n`).join('\n');
   dl(new Blob([txt],{type:'text/plain'}),'emails_prospection.txt');
   showToast('✉ Emails exportés !');
 }
